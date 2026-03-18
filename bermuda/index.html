@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bermuda Views Tower — Unit 1406 | Dubai Sports City</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background: #f4f4f2; color: #1a1a1a; line-height: 1.65; }
+    :root { --navy: #1a2e4a; --gold: #c9a84c; --light: #f9f8f5; --mid: #e8e4dc; --text: #2c2c2c; --muted: #6b6b6b; --white: #ffffff; --green: #2d7a4f; --teal: #0d7377; }
+
+    /* NAV */
+    .top-nav { background: var(--navy); padding: 12px 32px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+    .top-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; }
+    .top-nav a:hover { color: var(--gold); }
+    .top-nav .sep { color: rgba(255,255,255,0.3); }
+    .top-nav .current { color: var(--gold); font-weight: 600; }
+
+    /* HERO */
+    .hero { position: relative; height: 520px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,46,74,0.55) 0%, rgba(26,46,74,0.82) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+    .hero-tag { display: inline-block; background: var(--gold); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 16px; border-radius: 2px; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(26px, 5vw, 46px); font-weight: 300; color: var(--white); letter-spacing: 1px; line-height: 1.2; margin-bottom: 8px; }
+    .hero h1 strong { font-weight: 700; }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.78); letter-spacing: 0.5px; margin-bottom: 28px; }
+    .hero-price-dual { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .price-box { padding: 12px 28px; border-radius: 4px; text-align: center; }
+    .price-box.primary { background: var(--gold); }
+    .price-box.secondary { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); }
+    .price-box .currency { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.8); margin-bottom: 2px; }
+    .price-box .amount { font-size: 26px; font-weight: 700; color: var(--white); }
+    .price-box .note { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--navy); display: flex; flex-wrap: wrap; justify-content: center; gap: 0; }
+    .stat { padding: 18px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat:last-child { border-right: none; }
+    .stat-val { font-size: 20px; font-weight: 700; color: var(--gold); display: block; }
+    .stat-lbl { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* CURRENCY BANNER */
+    .currency-banner { background: linear-gradient(135deg, #0d2137 0%, #1a3a5c 100%); border-bottom: 3px solid var(--gold); }
+    .currency-inner { max-width: 1100px; margin: 0 auto; padding: 24px; display: flex; align-items: center; justify-content: center; gap: 48px; flex-wrap: wrap; }
+    .currency-item { text-align: center; }
+    .currency-item .c-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .currency-item .c-value { font-size: 28px; font-weight: 700; color: var(--white); }
+    .currency-item .c-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+    .currency-divider { width: 1px; height: 60px; background: rgba(255,255,255,0.15); }
+    .rate-badge { background: rgba(201,168,76,0.2); border: 1px solid var(--gold); border-radius: 4px; padding: 8px 16px; text-align: center; }
+    .rate-badge .r-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 2px; }
+    .rate-badge .r-value { font-size: 14px; font-weight: 700; color: var(--white); }
+
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 56px 24px; }
+    .section-title { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-heading { font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: var(--navy); margin-bottom: 24px; line-height: 1.3; }
+    .section-heading strong { font-weight: 700; }
+    .divider { width: 48px; height: 3px; background: var(--gold); margin-bottom: 32px; }
+    .body-text { font-size: 15px; color: var(--text); line-height: 1.8; max-width: 720px; text-align: justify; }
+
+    /* SPECS GRID */
+    .specs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
+    .spec-card { background: var(--white); border: 1px solid var(--mid); border-radius: 6px; padding: 20px; }
+    .spec-icon { font-size: 22px; margin-bottom: 8px; }
+    .spec-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .spec-value { font-size: 16px; font-weight: 600; color: var(--navy); }
+    .spec-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* AREA BREAKDOWN */
+    .area-breakdown { background: var(--light); border-left: 4px solid var(--gold); padding: 20px 24px; border-radius: 0 6px 6px 0; margin-top: 24px; }
+    .area-breakdown h4 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .area-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--mid); font-size: 14px; }
+    .area-row:last-child { border-bottom: none; font-weight: 700; color: var(--navy); }
+    .area-row .area-label { color: var(--text); }
+    .area-row .area-val { font-weight: 600; color: var(--navy); }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; border-radius: 8px; overflow: hidden; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-right { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; }
+    .gallery-right img { height: 200px; }
+    .gallery-grid .main-img { height: 408px; }
+
+    /* AMENITIES */
+    .amenities-bg { background: var(--light); }
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 28px; }
+    .amenity { background: var(--white); border: 1px solid var(--mid); border-radius: 6px; padding: 14px 16px; font-size: 13px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+    .amenity-icon { font-size: 18px; }
+
+    /* FINANCIAL TABLE */
+    .fin-section { background: var(--navy); }
+    .fin-inner { max-width: 1100px; margin: 0 auto; padding: 56px 24px; }
+    .fin-title { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .fin-heading { font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: var(--white); margin-bottom: 8px; }
+    .fin-heading strong { font-weight: 700; }
+    .fin-divider { width: 48px; height: 3px; background: var(--gold); margin-bottom: 32px; }
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { background: rgba(255,255,255,0.08); color: var(--gold); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 12px 16px; text-align: left; }
+    .fin-table td { padding: 14px 16px; font-size: 14px; color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table .highlight { background: rgba(201,168,76,0.15); }
+    .fin-table .highlight td { color: var(--white); font-weight: 700; font-size: 15px; }
+    .fin-table .green-row td { color: #5dba7e; font-weight: 700; }
+    .fin-note { color: rgba(255,255,255,0.45); font-size: 12px; margin-top: 16px; font-style: italic; }
+
+    /* ROI BLOCK */
+    .roi-block { background: rgba(45,122,79,0.2); border: 1px solid rgba(93,186,126,0.4); border-radius: 8px; padding: 24px 28px; margin-top: 28px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .roi-badge { background: var(--green); color: var(--white); font-size: 36px; font-weight: 800; padding: 12px 24px; border-radius: 6px; letter-spacing: -1px; white-space: nowrap; }
+    .roi-details { flex: 1; min-width: 200px; }
+    .roi-details h4 { color: #5dba7e; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+    .roi-details p { color: rgba(255,255,255,0.75); font-size: 13px; line-height: 1.7; }
+    .roi-details strong { color: var(--white); }
+
+    /* LOCATION */
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; margin-top: 28px; }
+    .location-info p { font-size: 15px; color: var(--text); line-height: 1.8; margin-bottom: 12px; }
+    .location-map { background: var(--mid); border-radius: 8px; overflow: hidden; height: 280px; }
+    .location-map iframe { width: 100%; height: 100%; border: none; }
+
+    /* COPY BOX */
+    .copy-box { background: var(--light); border: 1px solid var(--mid); border-radius: 6px; padding: 24px; margin-top: 32px; }
+    .copy-box h4 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .copy-box pre { font-family: inherit; font-size: 13px; color: var(--text); line-height: 1.8; white-space: pre-wrap; word-break: break-word; }
+
+    /* CTA */
+    .cta-section { background: var(--gold); text-align: center; padding: 56px 24px; }
+    .cta-section h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: var(--navy); margin-bottom: 8px; }
+    .cta-section h2 strong { font-weight: 700; }
+    .cta-section p { color: rgba(26,46,74,0.75); font-size: 15px; margin-bottom: 28px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; cursor: pointer; }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-white { background: var(--white); color: var(--navy); }
+
+    /* FOOTER */
+    footer { background: #111; color: rgba(255,255,255,0.4); text-align: center; padding: 24px; font-size: 12px; }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid .main-img { height: 260px; }
+      .gallery-right { grid-template-rows: auto; }
+      .gallery-right img { height: 160px; }
+      .location-grid { grid-template-columns: 1fr; }
+      .stat { padding: 14px 16px; }
+      .currency-inner { gap: 24px; }
+      .currency-divider { display: none; }
+      .hero-price-dual { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="../index.html">← Portfólio</a>
+  <span class="sep">/</span>
+  <span class="current">Bermuda Views Tower — Unit 1406</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="bermuda_hero.jpg" alt="Bermuda Views Tower — Dubai Sports City" />
+  <div class="hero-overlay">
+    <span class="hero-tag">🇦🇪 Dubai Sports City · UAE · Freehold</span>
+    <h1><strong>Bermuda Views Tower</strong><br>Unit 1406</h1>
+    <p class="hero-sub">Club Drive · Dubai Sports City · Dubai, UAE · 14th Floor · 2 Bedrooms</p>
+    <div class="hero-price-dual">
+      <div class="price-box primary">
+        <div class="currency">AED — Dirham</div>
+        <div class="amount">1,500,000</div>
+        <div class="note">Valor de mercado · Mar/2026</div>
+      </div>
+      <div class="price-box secondary">
+        <div class="currency">BRL — Real</div>
+        <div class="amount">R$ 2.097.000</div>
+        <div class="note">Cotação: 1 AED = R$ 1,398</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-val">1.287 sqft</span><span class="stat-lbl">Área Total</span></div>
+  <div class="stat"><span class="stat-val">119,6 m²</span><span class="stat-lbl">Equivalente m²</span></div>
+  <div class="stat"><span class="stat-val">2 Quartos</span><span class="stat-lbl">Dormitórios</span></div>
+  <div class="stat"><span class="stat-val">14º Andar</span><span class="stat-lbl">Pavimento</span></div>
+  <div class="stat"><span class="stat-val">LB1-054</span><span class="stat-lbl">Garagem</span></div>
+  <div class="stat"><span class="stat-val">7,3% a.a.</span><span class="stat-lbl">Yield Estimado</span></div>
+</div>
+
+<!-- CURRENCY BANNER -->
+<div class="currency-banner">
+  <div class="currency-inner">
+    <div class="currency-item">
+      <div class="c-label">Valor em Dirham (AED)</div>
+      <div class="c-value">AED 1.500.000</div>
+      <div class="c-sub">Moeda oficial dos Emirados Árabes</div>
+    </div>
+    <div class="currency-divider"></div>
+    <div class="rate-badge">
+      <div class="r-label">Taxa de câmbio · Mar/2026</div>
+      <div class="r-value">1 AED = R$ 1,398</div>
+    </div>
+    <div class="currency-divider"></div>
+    <div class="currency-item">
+      <div class="c-label">Equivalente em Reais (BRL)</div>
+      <div class="c-value">R$ 2.097.000</div>
+      <div class="c-sub">Baseado na cotação de 02/03/2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- DESCRIPTION -->
+<section class="section">
+  <p class="section-title">Sobre o Imóvel</p>
+  <h2 class="section-heading">Apartamento de <strong>alto padrão</strong><br>no coração de Dubai Sports City</h2>
+  <div class="divider"></div>
+  <p class="body-text">
+    O <strong>Bermuda Views Tower</strong> é um edifício residencial freehold de 16 andares localizado em <strong>Dubai Sports City</strong>, um dos bairros mais dinâmicos de Dubai. Desenvolvido pela <strong>Innovation SEZ Developer Ltd</strong> e concluído em 2015/2016, o empreendimento oferece 220 apartamentos com acabamento moderno e ampla infraestrutura de lazer.
+  </p>
+  <p class="body-text" style="margin-top:16px;">
+    A unidade <strong>1406</strong>, no 14º andar, é um apartamento de <strong>2 quartos com 1.287 sqft (119,6 m²)</strong>, com vaga de garagem coberta (LB1-054). A localização privilegiada no 14º andar proporciona vistas privilegiadas para o campo de golfe e para a cidade, justificando o prêmio de preço em relação a unidades em andares inferiores. O imóvel é classificado como <strong>freehold</strong>, permitindo plena propriedade por estrangeiros.
+  </p>
+</section>
+
+<!-- UNIT SPECS -->
+<section class="section" style="padding-top:0;">
+  <p class="section-title">Especificações da Unidade</p>
+  <h2 class="section-heading">Dados técnicos do <strong>Unit 1406</strong></h2>
+  <div class="divider"></div>
+  <div class="specs-grid">
+    <div class="spec-card">
+      <div class="spec-icon">🏢</div>
+      <div class="spec-label">Empreendimento</div>
+      <div class="spec-value">Bermuda Views Tower</div>
+      <div class="spec-sub">Innovation SEZ Developer Ltd</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🔑</div>
+      <div class="spec-label">Unidade</div>
+      <div class="spec-value">Unit 1406</div>
+      <div class="spec-sub">14º Andar · 2 Bedrooms</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📐</div>
+      <div class="spec-label">Área Total</div>
+      <div class="spec-value">1.287 sqft</div>
+      <div class="spec-sub">119,6 m² equivalente</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🛏</div>
+      <div class="spec-label">Quartos / Banheiros</div>
+      <div class="spec-value">2 Quartos</div>
+      <div class="spec-sub">2 banheiros + lavabo</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🚗</div>
+      <div class="spec-label">Garagem</div>
+      <div class="spec-value">Box LB1-054</div>
+      <div class="spec-sub">Estacionamento coberto</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🏛</div>
+      <div class="spec-label">Tipo de Propriedade</div>
+      <div class="spec-value">Freehold</div>
+      <div class="spec-sub">Propriedade plena · Estrangeiros permitidos</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📍</div>
+      <div class="spec-label">Localização</div>
+      <div class="spec-value">Dubai Sports City</div>
+      <div class="spec-sub">Club Drive · Dubai, UAE</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📅</div>
+      <div class="spec-label">Conclusão</div>
+      <div class="spec-value">2015 / 2016</div>
+      <div class="spec-sub">Pronto para uso</div>
+    </div>
+  </div>
+
+  <div class="area-breakdown" style="margin-top:32px;">
+    <h4>Detalhamento de Área</h4>
+    <div class="area-row">
+      <span class="area-label">Área total (sqft)</span>
+      <span class="area-val">1.287 sqft</span>
+    </div>
+    <div class="area-row">
+      <span class="area-label">Área total (m²)</span>
+      <span class="area-val">119,6 m²</span>
+    </div>
+    <div class="area-row">
+      <span class="area-label">Preço por sqft</span>
+      <span class="area-val">AED 1.166 / sqft</span>
+    </div>
+    <div class="area-row">
+      <span class="area-label">Preço por m²</span>
+      <span class="area-val">R$ 17.539 / m²</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" style="padding-top:0;">
+  <p class="section-title">Galeria</p>
+  <h2 class="section-heading">Bermuda Views Tower — <strong>Dubai Sports City</strong></h2>
+  <div class="divider"></div>
+  <div class="gallery-grid">
+    <img class="main-img" src="bermuda_hero.jpg" alt="Bermuda Views Tower fachada" />
+    <div class="gallery-right">
+      <img src="bermuda_exterior.jpg" alt="Bermuda Views Tower exterior" />
+      <img src="bermuda_render.jpg" alt="Bermuda Views Tower render" />
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<div class="amenities-bg">
+  <section class="section">
+    <p class="section-title">Infraestrutura</p>
+    <h2 class="section-heading">Amenidades do <strong>Bermuda Views Tower</strong></h2>
+    <div class="divider"></div>
+    <div class="amenities-grid">
+      <div class="amenity"><span class="amenity-icon">🏊</span> Piscina</div>
+      <div class="amenity"><span class="amenity-icon">💪</span> Academia (Gym)</div>
+      <div class="amenity"><span class="amenity-icon">🧖</span> Sauna</div>
+      <div class="amenity"><span class="amenity-icon">♨️</span> Steam Room</div>
+      <div class="amenity"><span class="amenity-icon">🛁</span> Jacuzzi</div>
+      <div class="amenity"><span class="amenity-icon">🍖</span> Área de Churrasco</div>
+      <div class="amenity"><span class="amenity-icon">🧒</span> Playground Infantil</div>
+      <div class="amenity"><span class="amenity-icon">🚗</span> Estacionamento Coberto</div>
+      <div class="amenity"><span class="amenity-icon">🛗</span> 4 Elevadores</div>
+      <div class="amenity"><span class="amenity-icon">📹</span> CCTV / Segurança 24h</div>
+      <div class="amenity"><span class="amenity-icon">🐾</span> Pet-friendly</div>
+      <div class="amenity"><span class="amenity-icon">🏥</span> Centro Médico de Primeiros Socorros</div>
+    </div>
+  </section>
+</div>
+
+<!-- FINANCIAL TABLE -->
+<div class="fin-section">
+  <div class="fin-inner">
+    <p class="fin-title">Dados Financeiros</p>
+    <h2 class="fin-heading">Valoração e <strong>Análise de Mercado</strong></h2>
+    <div class="fin-divider"></div>
+
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>AED (Dirham)</th>
+          <th>BRL (Real)</th>
+          <th>Referência</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>Valor de mercado (Mar/2026)</td>
+          <td>AED 1.500.000</td>
+          <td>R$ 2.097.000</td>
+          <td>Valor informado pelo proprietário</td>
+        </tr>
+        <tr>
+          <td>Estimativa YallaValue (unit 1406)</td>
+          <td>AED 1.050.000</td>
+          <td>R$ 1.467.900</td>
+          <td>YallaValue — Mar/2026</td>
+        </tr>
+        <tr>
+          <td>Última venda similar (2-bed 10º andar)</td>
+          <td>AED 1.200.000</td>
+          <td>R$ 1.677.600</td>
+          <td>Dez/2025 — 1.287 sqft</td>
+        </tr>
+        <tr>
+          <td>Última venda similar (2-bed 12º andar)</td>
+          <td>AED 1.060.000</td>
+          <td>R$ 1.481.880</td>
+          <td>Jan/2026 — 1.271 sqft</td>
+        </tr>
+        <tr>
+          <td>Preço por sqft (valor informado)</td>
+          <td>AED 1.166 / sqft</td>
+          <td>R$ 1.630 / sqft</td>
+          <td>14º andar — premium de andar</td>
+        </tr>
+        <tr>
+          <td>Preço por m² (valor informado)</td>
+          <td>AED 12.541 / m²</td>
+          <td>R$ 17.539 / m²</td>
+          <td>Baseado em 119,6 m²</td>
+        </tr>
+        <tr>
+          <td>Yield estimado (aluguel)</td>
+          <td>7,3% a.a.</td>
+          <td>—</td>
+          <td>YallaValue — Dubai Sports City</td>
+        </tr>
+        <tr class="green-row">
+          <td>Renda anual estimada (aluguel)</td>
+          <td>AED 109.500</td>
+          <td>R$ 153.081</td>
+          <td>7,3% sobre AED 1.500.000</td>
+        </tr>
+        <tr class="green-row">
+          <td>Renda mensal estimada (aluguel)</td>
+          <td>AED 9.125</td>
+          <td>R$ 12.757</td>
+          <td>Estimativa baseada em yield</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="fin-note">* Taxa de câmbio utilizada: 1 AED = R$ 1,398 (cotação de 02/03/2026 — Fonte: XE.com, Wise, Investing.com). Os valores em BRL variam conforme a cotação do dia. O custo de aquisição original não está disponível — a ser atualizado quando os documentos forem fornecidos.</p>
+
+    <div class="roi-block">
+      <div class="roi-badge" style="font-size:20px; padding:16px 20px; text-align:center;">
+        🇦🇪<br>Freehold<br>Dubai
+      </div>
+      <div class="roi-details">
+        <h4>Investimento Internacional — Emirados Árabes</h4>
+        <p>
+          Valor de mercado: <strong>AED 1.500.000 (R$ 2.097.000)</strong><br>
+          Yield estimado: <strong>7,3% a.a. — AED 109.500/ano</strong><br>
+          Tipo de propriedade: <strong>Freehold — plena propriedade por estrangeiros</strong><br>
+          Localização: <strong>Dubai Sports City — Dubai, UAE</strong><br>
+          ROI de aquisição: <strong>A calcular — aguardando documentos de compra</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<section class="section">
+  <p class="section-title">Localização</p>
+  <h2 class="section-heading">Club Drive · Dubai Sports City · <strong>Dubai, UAE</strong></h2>
+  <div class="divider"></div>
+  <div class="location-grid">
+    <div class="location-info">
+      <p><strong>Endereço:</strong> Club Drive, Al Hebiah Fourth — Dubai Sports City, Dubai, UAE</p>
+      <p><strong>Vizinhança:</strong> Próximo à Victory Heights Primary School, Sports City Mosque, Giovanni Boutique Suites e Prime Villas.</p>
+      <p><strong>Acesso:</strong> Fácil acesso pelas principais rodovias de Dubai. A 20 minutos do Dubai Mall e 25 minutos do Aeroporto Internacional de Dubai (DXB).</p>
+      <p><strong>Atrações próximas:</strong> Dubai Butterfly Garden, Dubai Miracle Garden, Global Village e campos de golfe.</p>
+    </div>
+    <div class="location-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.5!2d55.2!3d25.04!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6d5b5b5b5b5b%3A0x0!2sBermuda+Views+Tower%2C+Dubai+Sports+City!5e0!3m2!1spt!2sbr!4v1" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- COPY BOX -->
+<section class="section" style="padding-top:0;">
+  <p class="section-title">Anúncio</p>
+  <h2 class="section-heading">Texto pronto para <strong>agentes imobiliários</strong></h2>
+  <div class="divider"></div>
+  <div class="copy-box">
+    <h4>Copie e cole para Property Finder, Bayut, Dubizzle ou e-mail</h4>
+    <pre>🏙 FOR SALE — Bermuda Views Tower | Unit 1406 | Dubai Sports City
+
+2-Bedroom Apartment · 14th Floor · 1,287 sqft (119.6 m²) · Golf View
+Parking: LB1-054 (covered) · Freehold · Ready to move in
+
+📍 Club Drive, Dubai Sports City, Dubai, UAE
+🏗 Developer: Innovation SEZ Developer Ltd | Completed: 2015
+💰 Asking Price: AED 1,500,000 (R$ 2,097,000)
+📈 Rental Yield: ~7.3% p.a. | Est. rent: AED 9,125/month
+
+Amenities: Swimming pool · Gym · Sauna · Steam room · Jacuzzi
+BBQ area · Kids play area · 4 elevators · 24h security · Pet-friendly
+
+For more information, contact: [SEU CONTATO AQUI]</pre>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Interessado neste <strong>imóvel em Dubai?</strong></h2>
+  <p>Entre em contato para mais informações sobre a unidade 1406 no Bermuda Views Tower.</p>
+  <div class="cta-buttons">
+    <a href="https://wa.me/SEUNUMERO" class="btn btn-navy">WhatsApp</a>
+    <a href="mailto:seuemail@email.com" class="btn btn-white">E-mail</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Portfólio Privado de Investimentos Imobiliários · Documento confidencial · Não distribuir sem autorização</p>
+</footer>
+
+</body>
+</html>

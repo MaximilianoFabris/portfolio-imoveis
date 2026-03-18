@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hügel 642 — Apt 701 | Blumenau / SC</title>
+  <style>
+    :root {
+      --navy: #1a2e4a;
+      --navy-light: #243d61;
+      --gold: #c9a84c;
+      --gold-light: #e8c96e;
+      --light: #f9f8f5;
+      --white: #ffffff;
+      --text: #2c2c2c;
+      --muted: #6b7280;
+      --green: #2d7a4f;
+      --red: #c0392b;
+      --border: #e5e0d5;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', serif; background: var(--light); color: var(--text); }
+
+    /* NAV */
+    .nav {
+      background: var(--navy);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    }
+    .nav-back {
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: opacity 0.2s;
+    }
+    .nav-back:hover { opacity: 0.8; }
+    .nav-logo {
+      color: var(--white);
+      font-size: 0.9rem;
+      font-family: 'Arial', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+    .nav-badge {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 0.05em;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(26,46,74,0.88) 0%, rgba(26,46,74,0.55) 60%, rgba(26,46,74,0.2) 100%);
+    }
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 60px;
+      max-width: 700px;
+    }
+    .hero-tag {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 18px;
+      width: fit-content;
+    }
+    .hero-title {
+      color: var(--white);
+      font-size: 3rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .hero-subtitle {
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+    .hero-price {
+      color: var(--white);
+      font-family: 'Arial', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .hero-price-label {
+      color: var(--gold-light);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      opacity: 0.85;
+    }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--navy);
+      padding: 20px 60px;
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 0 36px;
+      border-right: 1px solid rgba(201,168,76,0.25);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      color: var(--gold);
+      font-family: 'Arial', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: block;
+    }
+    .stat-label {
+      color: rgba(255,255,255,0.6);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* SECTIONS */
+    .section { padding: 70px 60px; }
+    .section-alt { background: var(--white); }
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--navy);
+      font-weight: 400;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .section-divider {
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+      margin-bottom: 32px;
+    }
+    .section-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #444;
+      max-width: 820px;
+    }
+
+    /* SPECS GRID */
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .spec-card {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .spec-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .spec-value {
+      font-size: 1.05rem;
+      color: var(--navy);
+      font-weight: 600;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* FLOOR PLAN */
+    .floorplan-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .floorplan-img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .rooms-list { margin-top: 20px; }
+    .room-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.9rem;
+    }
+    .room-item:last-child { border-bottom: none; }
+    .room-name { color: var(--text); }
+    .room-area {
+      color: var(--navy);
+      font-weight: 600;
+      background: var(--light);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.82rem;
+    }
+
+    /* AMENITIES */
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .amenity-item {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .amenity-icon { color: var(--gold); font-size: 1rem; }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 28px;
+      height: 320px;
+    }
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .gallery-col {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* FINANCIAL TABLE */
+    .fin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 28px;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.9rem;
+    }
+    .fin-table th {
+      background: var(--navy);
+      color: var(--gold);
+      padding: 12px 18px;
+      text-align: left;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .fin-table td {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table tr:nth-child(even) td { background: var(--light); }
+    .fin-highlight td {
+      background: #f0f7f4 !important;
+      color: var(--green) !important;
+      font-weight: 700;
+    }
+    .fin-total td {
+      background: var(--navy) !important;
+      color: var(--gold) !important;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .fin-pending td {
+      color: var(--red) !important;
+      font-weight: 600;
+    }
+
+    /* PROGRESS BAR */
+    .progress-wrap {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 28px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Arial', sans-serif;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .progress-bar {
+      height: 10px;
+      background: #e0ddd6;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--green), #4caf7d);
+      border-radius: 5px;
+      width: 53.5%;
+    }
+    .progress-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .prog-stat {
+      text-align: center;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .prog-stat-val {
+      font-family: 'Arial', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: block;
+    }
+    .prog-stat-lbl {
+      font-family: 'Arial', sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .stat-green { color: var(--green); background: #f0f7f4; }
+    .stat-red { color: var(--red); background: #fdf2f2; }
+    .stat-navy { color: var(--navy); background: var(--light); }
+
+    /* COPY TEXT */
+    .copy-box {
+      background: var(--navy);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-top: 28px;
+    }
+    .copy-box-title {
+      color: var(--gold);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .copy-box-text {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--navy);
+      padding: 60px;
+      text-align: center;
+    }
+    .cta-title {
+      color: var(--white);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .cta-sub {
+      color: rgba(255,255,255,0.6);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: 'Arial', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: 'Arial', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.3);
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: #111e2e;
+      padding: 24px 60px;
+      text-align: center;
+      color: rgba(255,255,255,0.35);
+      font-family: 'Arial', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .hero { height: 400px; }
+      .hero-content { padding: 0 24px; }
+      .hero-title { font-size: 2rem; }
+      .section { padding: 48px 24px; }
+      .stats-bar { padding: 16px 24px; }
+      .stat-item { padding: 0 16px; }
+      .floorplan-section { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; height: auto; }
+      .gallery-col { grid-template-rows: auto; }
+      .gallery-img { height: 200px; }
+      .cta-section { padding: 48px 24px; }
+      footer { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="../index.html" class="nav-back">&#8592; Portfólio</a>
+    <span class="nav-logo">Portfólio Imobiliário</span>
+    <span class="nav-badge">Em Construção</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="hugel_hero.jpg" alt="Hügel 642 — Blumenau" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Cessão de Direitos · Blumenau / SC</span>
+      <h1 class="hero-title">Hügel 642</h1>
+      <p class="hero-subtitle">Apartamento 701 · 7º Pavimento · Vila Nova</p>
+      <p class="hero-price-label">Valor de Mercado Estimado</p>
+      <p class="hero-price">R$ 380.000</p>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-value">36,19 m²</span>
+      <span class="stat-label">Área Privativa</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">19,06 m²</span>
+      <span class="stat-label">Área Comum</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">55,25 m²</span>
+      <span class="stat-label">Área Total</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">7º Andar</span>
+      <span class="stat-label">Pavimento</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">1 Box</span>
+      <span class="stat-label">Garagem (nº 30)</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">Jul/2027</span>
+      <span class="stat-label">Previsão Habite-se</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">53,5%</span>
+      <span class="stat-label">Pago</span>
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <section class="section">
+    <h2 class="section-title">Sobre o Imóvel</h2>
+    <div class="section-divider"></div>
+    <p class="section-text">
+      O <strong>Hügel 642</strong> é um empreendimento moderno e sofisticado da <strong>Novo Rumo Construtora e Incorporadora</strong>, localizado na Rua Joinville, 642, no bairro Vila Nova — um dos mais valorizados de Blumenau, Santa Catarina. O edifício conta com 16 pavimentos, hall de entrada mobiliado e decorado com estilo contemporâneo, e uma infraestrutura completa de lazer e serviços.
+    </p>
+    <p class="section-text" style="margin-top:16px;">
+      O <strong>Apartamento 701</strong> está situado no 7º pavimento, com <strong>36,19 m² de área privativa</strong> e um total de <strong>55,25 m²</strong>. A unidade inclui <strong>vaga de garagem Box nº 30</strong> no primeiro pavimento. Trata-se de um loft inteligente e versátil — ideal para moradia, locação por temporada ou investimento de longo prazo em uma cidade universitária com alta demanda habitacional.
+    </p>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <div class="spec-label">Empreendimento</div>
+        <div class="spec-value">Hügel 642</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Unidade</div>
+        <div class="spec-value">Apartamento 701</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Pavimento</div>
+        <div class="spec-value">7º Andar</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Área Privativa</div>
+        <div class="spec-value">36,19 m²</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Área Comum</div>
+        <div class="spec-value">19,06 m²</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Área Total</div>
+        <div class="spec-value">55,25 m²</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Garagem</div>
+        <div class="spec-value">Box Simples nº 30</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Fração Ideal Solo</div>
+        <div class="spec-value">0,0078%</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Matrícula</div>
+        <div class="spec-value">R-1/70484 — 2º RI Blumenau</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Incorporadora</div>
+        <div class="spec-value">Novo Rumo Construtora</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Endereço</div>
+        <div class="spec-value">Rua Joinville, 642 — Vila Nova</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Cidade</div>
+        <div class="spec-value">Blumenau / SC</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-label">Habite-se Previsto</div>
+        <div class="spec-value">Julho de 2027</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLOOR PLAN -->
+  <section class="section section-alt">
+    <h2 class="section-title">Planta do Pavimento</h2>
+    <div class="section-divider"></div>
+    <div class="floorplan-section">
+      <div>
+        <img src="hugel_floorplan.png" alt="Planta do Pavimento — Hügel 642" class="floorplan-img" />
+        <p style="font-family:Arial,sans-serif;font-size:0.78rem;color:var(--muted);margin-top:10px;text-align:center;">Planta do pavimento tipo — Apt 701 localizado no 7º andar</p>
+      </div>
+      <div>
+        <h3 style="font-size:1.2rem;color:var(--navy);margin-bottom:16px;">Composição da Unidade</h3>
+        <div class="rooms-list">
+          <div class="room-item">
+            <span class="room-name">Living / Dormitório Integrado</span>
+            <span class="room-area">~20 m²</span>
+          </div>
+          <div class="room-item">
+            <span class="room-name">Cozinha</span>
+            <span class="room-area">~6 m²</span>
+          </div>
+          <div class="room-item">
+            <span class="room-name">Banheiro</span>
+            <span class="room-area">~4 m²</span>
+          </div>
+          <div class="room-item">
+            <span class="room-name">Área de Serviço</span>
+            <span class="room-area">~3 m²</span>
+          </div>
+          <div class="room-item">
+            <span class="room-name">Varanda / Sacada</span>
+            <span class="room-area">~3 m²</span>
+          </div>
+          <div class="room-item">
+            <span class="room-name">Box Garagem nº 30 (1º Pav.)</span>
+            <span class="room-area">11,50 m²</span>
+          </div>
+        </div>
+        <div style="margin-top:24px;background:var(--light);border:1px solid var(--border);border-radius:8px;padding:18px;">
+          <p style="font-family:Arial,sans-serif;font-size:0.82rem;color:var(--muted);line-height:1.6;">
+            <strong style="color:var(--navy);">Tipologia:</strong> Loft com mezanino opcional · Layout aberto e versátil · Acabamentos contemporâneos · Janelas amplas com ventilação cruzada · Varanda com churrasqueira (unidades selecionadas).
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="section">
+    <h2 class="section-title">Infraestrutura do Empreendimento</h2>
+    <div class="section-divider"></div>
+    <div class="amenities-grid">
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Piscina</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Academia</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Salão de Festas</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Espaço Co-working</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Mini Market</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Terraço Descoberto</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Hall Mobiliado</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Elevadores</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Portaria 24h</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Garagem Coberta</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> Acabamento Premium</div>
+      <div class="amenity-item"><span class="amenity-icon">&#9670;</span> 16 Pavimentos</div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section section-alt">
+    <h2 class="section-title">Galeria</h2>
+    <div class="section-divider"></div>
+    <div class="gallery-grid">
+      <img src="hugel_render.jpg" alt="Hügel 642 — Render Oficial" class="gallery-img" />
+      <div class="gallery-col">
+        <img src="hugel_aerial.jpg" alt="Hügel 642 — Vista Aérea" class="gallery-img" />
+        <img src="hugel_render2.jpg" alt="Hügel 642 — Fachada" class="gallery-img" />
+      </div>
+      <div class="gallery-col">
+        <img src="hugel_hero.jpg" alt="Hügel 642 — Obra" class="gallery-img" />
+        <div style="background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+          <span style="color:var(--gold);font-size:1.8rem;">&#9670;</span>
+          <span style="color:rgba(255,255,255,0.7);font-family:Arial,sans-serif;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Blumenau / SC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINANCIAL -->
+  <section class="section">
+    <h2 class="section-title">Situação Financeira</h2>
+    <div class="section-divider"></div>
+
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Progresso de Pagamento</span>
+        <span>53,5% pago</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-stats">
+        <div class="prog-stat stat-green">
+          <span class="prog-stat-val">R$ 154.370</span>
+          <span class="prog-stat-lbl">Total Pago (com CUB)</span>
+        </div>
+        <div class="prog-stat stat-red">
+          <span class="prog-stat-val">R$ 134.399</span>
+          <span class="prog-stat-lbl">Saldo Devedor</span>
+        </div>
+        <div class="prog-stat stat-navy">
+          <span class="prog-stat-val">24 / 67</span>
+          <span class="prog-stat-lbl">Parcelas Pagas / Total</span>
+        </div>
+      </div>
+    </div>
+
+    <table class="fin-table" style="margin-top:28px;">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Valor</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Preço de Compra (Contrato)</td>
+          <td><strong>R$ 288.769,01</strong></td>
+          <td>Dez/2023</td>
+        </tr>
+        <tr>
+          <td>Entrada (20%)</td>
+          <td>R$ 57.753,81</td>
+          <td>Paga em Dez/2023</td>
+        </tr>
+        <tr>
+          <td>60 Parcelas Mensais</td>
+          <td>R$ 2.887,69/mês</td>
+          <td>Jan/2024 a Dez/2028 (corrigidas pelo CUB/SC)</td>
+        </tr>
+        <tr>
+          <td>5 Reforços Anuais</td>
+          <td>R$ 11.550,76/ano</td>
+          <td>Jun/2024 a Jun/2028</td>
+        </tr>
+        <tr class="fin-highlight">
+          <td>Total Pago até Mar/2026 (com CUB)</td>
+          <td><strong>R$ 154.369,54</strong></td>
+          <td>24 parcelas + entrada + 2 reforços</td>
+        </tr>
+        <tr class="fin-pending">
+          <td>Saldo Devedor Remanescente</td>
+          <td><strong>R$ 134.399,47</strong></td>
+          <td>43 parcelas + 3 reforços (até Dez/2028)</td>
+        </tr>
+        <tr>
+          <td>Correção Monetária</td>
+          <td>CUB/SC (pré-chaves)</td>
+          <td>IGP-M + 0,5% a.m. (pós-chaves)</td>
+        </tr>
+        <tr class="fin-total">
+          <td>Valor de Mercado Estimado (Mar/2026)</td>
+          <td><strong>R$ 380.000</strong></td>
+          <td>Base: 4 anúncios ativos — R$ 320k a R$ 380k</td>
+        </tr>
+        <tr style="background:#f5f5f5;">
+          <td><strong>Custo Total da Operação</strong></td>
+          <td><strong>R$ 288.769,01</strong></td>
+          <td>Total pago (R$ 154.370) + Saldo devedor (R$ 134.399)</td>
+        </tr>
+        <tr style="background:#e8f5ee;">
+          <td><strong>Lucro Bruto Estimado</strong></td>
+          <td><strong style="color:#2d7a4f;">R$ 91.230,99</strong></td>
+          <td>Valor de mercado − custo total da operação</td>
+        </tr>
+        <tr style="background:#1a2e4a;">
+          <td style="color:#fff;"><strong>💰 ROI sobre custo total</strong></td>
+          <td style="color:#c9a84c;"><strong>+31,6%</strong></td>
+          <td style="color:rgba(255,255,255,0.7);">(Mercado − Custo Total) ÷ Custo Total × 100</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:16px;background:var(--light);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 6px 6px 0;">
+      <p style="font-family:Arial,sans-serif;font-size:0.82rem;color:var(--muted);line-height:1.6;">
+        <strong style="color:var(--navy);">Pesquisa de mercado (Mar/2026):</strong> Lotes similares de 36–37 m² no Hügel 642 estão sendo anunciados entre R$ 320.000 e R$ 380.000 nas plataformas Lobe Imóveis, Zelt, Kenlo e Chaves na Mão. O valor de R$ 380.000 representa o teto do mercado secundário atual para unidades com garagem.
+      </p>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="section section-alt">
+    <h2 class="section-title">Localização</h2>
+    <div class="section-divider"></div>
+    <p class="section-text">
+      O Hügel 642 está localizado na <strong>Rua Joinville, 642 — Bairro Vila Nova, Blumenau / SC</strong> (CEP: 89035-200). O bairro Vila Nova é um dos mais dinâmicos de Blumenau, com excelente acesso ao centro da cidade, à FURB (Universidade Regional de Blumenau), ao Terminal da Proeb e às principais vias de circulação. A proximidade com a universidade garante alta demanda por locação, tornando o imóvel um ativo de renda atrativo.
+    </p>
+    <div style="margin-top:24px;background:var(--light);border:1px solid var(--border);border-radius:8px;padding:20px;font-family:Arial,sans-serif;font-size:0.88rem;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;">
+        <div><strong style="color:var(--navy);">Endereço:</strong><br/>Rua Joinville, 642 — Vila Nova</div>
+        <div><strong style="color:var(--navy);">Cidade:</strong><br/>Blumenau / SC — CEP 89035-200</div>
+        <div><strong style="color:var(--navy);">Próximo a:</strong><br/>FURB · Terminal da Proeb · Centro</div>
+        <div><strong style="color:var(--navy);">Incorporadora:</strong><br/>Novo Rumo Construtora</div>
+      </div>
+      <div style="margin-top:14px;">
+        <a href="https://maps.google.com/?q=Rua+Joinville+642+Vila+Nova+Blumenau+SC" target="_blank" style="color:var(--gold);font-size:0.82rem;text-decoration:none;">&#9654; Ver no Google Maps</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COPY TEXT -->
+  <section class="section">
+    <h2 class="section-title">Texto para Anúncio</h2>
+    <div class="section-divider"></div>
+    <p class="section-text">Texto pronto para copiar e colar no ZAP Imóveis, OLX, Viva Real ou enviar a agentes imobiliários:</p>
+    <div class="copy-box">
+      <p class="copy-box-title">Copie e cole no ZAP / OLX / Viva Real</p>
+      <p class="copy-box-text">🏢 CESSÃO DE DIREITOS — HÜGEL 642 | Apt 701 | Blumenau / SC
+
+📍 Rua Joinville, 642 — Bairro Vila Nova — Blumenau / SC
+🏗️ Construtora: Novo Rumo | Entrega prevista: Julho/2027
+
+✅ Apartamento 701 — 7º Pavimento
+✅ Área privativa: 36,19 m² | Área total: 55,25 m²
+✅ 1 Dormitório / Loft | 1 Banheiro | 1 Vaga de Garagem (Box nº 30)
+✅ Matrícula: R-1/70484 — 2º Registro de Imóveis de Blumenau
+
+💰 CONDIÇÕES DE VENDA (Cessão de Direitos):
+• Valor de mercado: R$ 380.000
+• Total já investido pelo cedente: R$ 154.370 (pago)
+• Saldo devedor a assumir: R$ 134.399 (43 parcelas + 3 reforços até Dez/2028)
+• Correção: CUB/SC (pré-chaves) | IGP-M + 0,5% a.m. (pós-chaves)
+
+🏊 INFRAESTRUTURA: Piscina · Academia · Salão de Festas · Co-working · Mini Market · Terraço · Hall Mobiliado · Portaria 24h
+
+📞 Solicite mais informações, fotos e documentação completa.</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="cta-title">Interessado neste imóvel?</h2>
+    <p class="cta-sub">Entre em contato para documentação completa, visita à obra e condições de cessão.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/SEUNUMERO?text=Ol%C3%A1%2C+tenho+interesse+no+Apt+701+do+H%C3%BCgel+642+em+Blumenau." class="btn-primary">&#128222; WhatsApp</a>
+      <a href="mailto:seuemail@email.com?subject=Interesse%20Hügel%20642%20Apt%20701" class="btn-secondary">&#9993; Enviar E-mail</a>
+      <a href="../index.html" class="btn-secondary">&#8592; Ver Portfólio</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>HÜGEL 642 · APARTAMENTO 701 · BLUMENAU / SC · DOCUMENTO CONFIDENCIAL — USO EXCLUSIVO PARA FINS DE NEGOCIAÇÃO</p>
+  </footer>
+
+</body>
+</html>

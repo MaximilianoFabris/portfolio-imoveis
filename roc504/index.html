@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venda — Apt 504 | Roc Paraguai | Balneário Camboriú</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background: #f4f4f2; color: #1a1a1a; line-height: 1.65; }
+    :root { --navy: #1a2e4a; --gold: #c9a84c; --light: #f9f8f5; --mid: #e8e4dc; --text: #2c2c2c; --muted: #6b6b6b; --white: #ffffff; --green: #2d7a4f; }
+
+    /* NAV */
+    .top-nav { background: var(--navy); padding: 12px 32px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+    .top-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; }
+    .top-nav a:hover { color: var(--gold); }
+    .top-nav .sep { color: rgba(255,255,255,0.3); }
+    .top-nav .current { color: var(--gold); font-weight: 600; }
+
+    /* HERO */
+    .hero { position: relative; height: 520px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,46,74,0.55) 0%, rgba(26,46,74,0.82) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+    .hero-tag { display: inline-block; background: var(--gold); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 16px; border-radius: 2px; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(26px, 5vw, 46px); font-weight: 300; color: var(--white); letter-spacing: 1px; line-height: 1.2; margin-bottom: 8px; }
+    .hero h1 strong { font-weight: 700; }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.78); letter-spacing: 0.5px; margin-bottom: 28px; }
+    .hero-price { background: var(--gold); color: var(--white); font-size: 28px; font-weight: 700; padding: 12px 36px; border-radius: 4px; letter-spacing: 0.5px; }
+    .hero-price span { font-size: 13px; font-weight: 400; display: block; opacity: 0.85; margin-top: 2px; }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--navy); display: flex; flex-wrap: wrap; justify-content: center; gap: 0; }
+    .stat { padding: 18px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat:last-child { border-right: none; }
+    .stat-val { font-size: 20px; font-weight: 700; color: var(--gold); display: block; }
+    .stat-lbl { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 56px 24px; }
+    .section-title { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-heading { font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: var(--navy); margin-bottom: 24px; line-height: 1.3; }
+    .section-heading strong { font-weight: 700; }
+    .divider { width: 48px; height: 3px; background: var(--gold); margin-bottom: 32px; }
+    .body-text { font-size: 15px; color: var(--text); line-height: 1.8; max-width: 720px; }
+
+    /* SPECS GRID */
+    .specs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
+    .spec-card { background: var(--white); border: 1px solid var(--mid); border-radius: 6px; padding: 20px; }
+    .spec-icon { font-size: 22px; margin-bottom: 8px; }
+    .spec-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .spec-value { font-size: 16px; font-weight: 600; color: var(--navy); }
+    .spec-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* AREA BREAKDOWN */
+    .area-breakdown { background: var(--light); border-left: 4px solid var(--gold); padding: 20px 24px; border-radius: 0 6px 6px 0; margin-top: 24px; }
+    .area-breakdown h4 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .area-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--mid); font-size: 14px; }
+    .area-row:last-child { border-bottom: none; font-weight: 700; color: var(--navy); }
+    .area-row .area-label { color: var(--text); }
+    .area-row .area-val { font-weight: 600; color: var(--navy); }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; border-radius: 8px; overflow: hidden; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-right { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; }
+    .gallery-right img { height: 200px; }
+    .gallery-grid .main-img { height: 408px; }
+
+    /* FINANCIAL TABLE */
+    .fin-section { background: var(--navy); }
+    .fin-inner { max-width: 1100px; margin: 0 auto; padding: 56px 24px; }
+    .fin-title { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .fin-heading { font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: var(--white); margin-bottom: 8px; }
+    .fin-heading strong { font-weight: 700; }
+    .fin-divider { width: 48px; height: 3px; background: var(--gold); margin-bottom: 32px; }
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { background: rgba(255,255,255,0.08); color: var(--gold); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 12px 16px; text-align: left; }
+    .fin-table td { padding: 14px 16px; font-size: 14px; color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table .highlight { background: rgba(201,168,76,0.15); }
+    .fin-table .highlight td { color: var(--white); font-weight: 700; font-size: 15px; }
+    .fin-table .green-row td { color: #5dba7e; font-weight: 700; }
+
+    /* ROI BLOCK */
+    .roi-block { background: rgba(45,122,79,0.2); border: 1px solid rgba(93,186,126,0.4); border-radius: 8px; padding: 24px 28px; margin-top: 28px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .roi-badge { background: var(--green); color: var(--white); font-size: 36px; font-weight: 800; padding: 12px 24px; border-radius: 6px; letter-spacing: -1px; white-space: nowrap; }
+    .roi-details { flex: 1; min-width: 200px; }
+    .roi-details h4 { color: #5dba7e; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+    .roi-details p { color: rgba(255,255,255,0.75); font-size: 13px; line-height: 1.7; }
+    .roi-details strong { color: var(--white); }
+
+    /* AMENITIES */
+    .amenities-bg { background: var(--light); }
+    .amenities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-top: 28px; }
+    .amenity { background: var(--white); border: 1px solid var(--mid); border-radius: 6px; padding: 14px 16px; font-size: 13px; color: var(--text); display: flex; align-items: center; gap: 10px; }
+    .amenity-icon { font-size: 18px; }
+
+    /* LOCATION */
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; margin-top: 28px; }
+    .location-info p { font-size: 15px; color: var(--text); line-height: 1.8; margin-bottom: 12px; }
+    .location-map { background: var(--mid); border-radius: 8px; overflow: hidden; height: 280px; }
+    .location-map iframe { width: 100%; height: 100%; border: none; }
+
+    /* CTA */
+    .cta-section { background: var(--gold); text-align: center; padding: 56px 24px; }
+    .cta-section h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: var(--navy); margin-bottom: 8px; }
+    .cta-section h2 strong { font-weight: 700; }
+    .cta-section p { color: rgba(26,46,74,0.75); font-size: 15px; margin-bottom: 28px; }
+    .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-size: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; cursor: pointer; }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-white { background: var(--white); color: var(--navy); }
+
+    /* COPY BOX */
+    .copy-box { background: var(--light); border: 1px solid var(--mid); border-radius: 6px; padding: 24px; margin-top: 32px; }
+    .copy-box h4 { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .copy-box pre { font-family: inherit; font-size: 13px; color: var(--text); line-height: 1.8; white-space: pre-wrap; word-break: break-word; }
+
+    /* FOOTER */
+    footer { background: #111; color: rgba(255,255,255,0.4); text-align: center; padding: 24px; font-size: 12px; }
+
+    /* BADGE */
+    .badge-quitado { display: inline-block; background: var(--green); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; margin-left: 8px; vertical-align: middle; }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid .main-img { height: 260px; }
+      .gallery-right { grid-template-rows: auto; }
+      .gallery-right img { height: 160px; }
+      .location-grid { grid-template-columns: 1fr; }
+      .stat { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="../index.html">← Portfólio</a>
+  <span class="sep">/</span>
+  <span class="current">Roc Paraguai — Apt 504</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="roc_hero.jpg" alt="Roc Paraguai — Balneário Camboriú" />
+  <div class="hero-overlay">
+    <span class="hero-tag">✅ 100% Quitado · Cessão de Direitos</span>
+    <h1><strong>Roc Paraguai</strong><br>Apartamento 504</h1>
+    <p class="hero-sub">Rua Paraguai · Bairro Nações · Balneário Camboriú / SC</p>
+    <div class="hero-price">
+      R$ 1.100.000
+      <span>Valor de mercado estimado · Mar/2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-val">Privativa</span><span class="stat-lbl">Área Privativa</span></div>
+  <div class="stat"><span class="stat-val">Comum</span><span class="stat-lbl">Área Comum</span></div>
+  <div class="stat"><span class="stat-val">Total</span><span class="stat-lbl">Área Total</span></div>
+  <div class="stat"><span class="stat-val">2 Suítes</span><span class="stat-lbl">Dormitórios</span></div>
+  <div class="stat"><span class="stat-val">Box 13</span><span class="stat-lbl">Garagem</span></div>
+  <div class="stat"><span class="stat-val">Dez/2027</span><span class="stat-lbl">Entrega Prevista</span></div>
+  <div class="stat"><span class="stat-val">5º Andar</span><span class="stat-lbl">Pavimento</span></div>
+</div>
+
+<!-- DESCRIPTION -->
+<section class="section">
+  <p class="section-title">Sobre o Imóvel</p>
+  <h2 class="section-heading">Apartamento <strong>sofisticado</strong> no coração<br>de Balneário Camboriú</h2>
+  <div class="divider"></div>
+  <p class="body-text">
+    O <strong>Roc Paraguai</strong> é um empreendimento residencial de alto padrão da <strong>Haacke Empreendimentos Imobiliários</strong>, localizado na Rua Paraguai, no bairro Nações — uma das regiões mais valorizadas de Balneário Camboriú / SC. O apartamento <strong>504</strong> é uma unidade de 2 suítes com garagem privativa (Box 13), entrega prevista para <strong>dezembro de 2027</strong>.
+  </p>
+  <p class="body-text" style="margin-top:16px;">
+    O imóvel está <strong>100% quitado</strong> e disponível para cessão de direitos. A venda será realizada por <strong>transferência de contrato</strong>, com anuência da incorporadora Haacke. Trata-se de uma oportunidade de adquirir uma unidade em um empreendimento de alto padrão em Balneário Camboriú, cidade que registra uma das maiores valorizações imobiliárias do Brasil.
+  </p>
+
+  <div class="specs-grid">
+    <div class="spec-card">
+      <div class="spec-icon">🏢</div>
+      <div class="spec-label">Empreendimento</div>
+      <div class="spec-value">Roc Paraguai</div>
+      <div class="spec-sub">Haacke Empreendimentos</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🔑</div>
+      <div class="spec-label">Unidade</div>
+      <div class="spec-value">Apartamento 504</div>
+      <div class="spec-sub">Bairro Nações</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🛏</div>
+      <div class="spec-label">Dormitórios</div>
+      <div class="spec-value">2 Suítes</div>
+      <div class="spec-sub">2 banheiros</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🚗</div>
+      <div class="spec-label">Garagem</div>
+      <div class="spec-value">Box 13</div>
+      <div class="spec-sub">Vaga privativa</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🏗</div>
+      <div class="spec-label">Incorporadora</div>
+      <div class="spec-value">Haacke</div>
+      <div class="spec-sub">Balneário Camboriú / SC</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📅</div>
+      <div class="spec-label">Entrega Prevista</div>
+      <div class="spec-value">Dez/2027</div>
+      <div class="spec-sub">Prazo: 36 + 6 meses</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📍</div>
+      <div class="spec-label">Endereço</div>
+      <div class="spec-value">Rua Paraguai</div>
+      <div class="spec-sub">Nações · Balneário Camboriú / SC</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">✅</div>
+      <div class="spec-label">Status Financeiro</div>
+      <div class="spec-value">100% Quitado</div>
+      <div class="spec-sub">Sem saldo devedor</div>
+    </div>
+  </div>
+
+  <div class="area-breakdown" style="margin-top:32px;">
+    <h4>Detalhamento de Áreas</h4>
+    <div class="area-row">
+      <span class="area-label">🔑 Área Privativa</span>
+      <span class="area-val">A confirmar (contrato de reserva)</span>
+    </div>
+    <div class="area-row">
+      <span class="area-label">🏘 Área Comum</span>
+      <span class="area-val">A confirmar (memorial descritivo)</span>
+    </div>
+    <div class="area-row">
+      <span class="area-label">📐 Área Total</span>
+      <span class="area-val">A confirmar</span>
+    </div>
+    <div class="area-row" style="margin-top:8px; padding-top:8px; border-top: 2px solid var(--gold);">
+      <span class="area-label">🚗 Garagem — Box 13</span>
+      <span class="area-val">Vaga privativa inclusa</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" style="padding-top:0;">
+  <p class="section-title">Galeria</p>
+  <h2 class="section-heading">Imagens do <strong>Empreendimento</strong></h2>
+  <div class="divider"></div>
+  <div class="gallery-grid">
+    <img src="roc_hero.jpg" alt="Roc Paraguai — Fachada" class="main-img" />
+    <div class="gallery-right">
+      <img src="roc_exterior.jpg" alt="Roc Paraguai — Vista lateral" />
+      <img src="roc_lobby.jpg" alt="Roc Paraguai — Lobby" />
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<div class="amenities-bg">
+  <section class="section">
+    <p class="section-title">Infraestrutura</p>
+    <h2 class="section-heading">Lazer e <strong>Serviços</strong></h2>
+    <div class="divider"></div>
+    <div class="amenities-grid">
+      <div class="amenity"><span class="amenity-icon">🏊</span> Piscina</div>
+      <div class="amenity"><span class="amenity-icon">🏋️</span> Academia</div>
+      <div class="amenity"><span class="amenity-icon">🧖</span> Espaço Spa</div>
+      <div class="amenity"><span class="amenity-icon">🍖</span> Churrasqueira a carvão</div>
+      <div class="amenity"><span class="amenity-icon">🛋️</span> Salão de festas</div>
+      <div class="amenity"><span class="amenity-icon">🚗</span> 2 Pavimentos de garagem</div>
+      <div class="amenity"><span class="amenity-icon">🔒</span> Portaria 24h</div>
+      <div class="amenity"><span class="amenity-icon">🌿</span> Área verde</div>
+      <div class="amenity"><span class="amenity-icon">🛗</span> Elevadores</div>
+      <div class="amenity"><span class="amenity-icon">📦</span> Depósito privativo</div>
+    </div>
+  </section>
+</div>
+
+<!-- FINANCIAL -->
+<div class="fin-section">
+  <div class="fin-inner">
+    <p class="fin-title">Dados Financeiros</p>
+    <h2 class="fin-heading">Investimento & <strong>Retorno</strong></h2>
+    <div class="fin-divider"></div>
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Valor</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Valor contratual (Apt 504)</td>
+          <td>R$ 650.000,00</td>
+          <td>Contrato de reserva Mar/2023</td>
+        </tr>
+        <tr>
+          <td>Garagem — Box 13</td>
+          <td>R$ 50.000,00</td>
+          <td>Incluso no contrato</td>
+        </tr>
+        <tr class="highlight">
+          <td>Valor total do contrato</td>
+          <td>R$ 700.000,00</td>
+          <td>Entrada + 11 parcelas trimestrais</td>
+        </tr>
+        <tr>
+          <td>Entrada (ato — Mar/2023)</td>
+          <td>R$ 150.000,00</td>
+          <td>Pago na assinatura</td>
+        </tr>
+        <tr>
+          <td>11 parcelas trimestrais</td>
+          <td>R$ 550.000,00</td>
+          <td>Jun/2023 a Dez/2025 — todas pagas</td>
+        </tr>
+        <tr class="highlight">
+          <td>Total pago / Custo total</td>
+          <td>R$ 700.000,00</td>
+          <td>✅ 100% Quitado — sem saldo devedor</td>
+        </tr>
+        <tr>
+          <td>Reajuste INCC acumulado</td>
+          <td>A confirmar</td>
+          <td>Aplicado sobre parcelas até entrega</td>
+        </tr>
+        <tr class="highlight">
+          <td>Valor de mercado estimado</td>
+          <td>R$ 1.100.000,00</td>
+          <td>Avaliação Mar/2026 — Balneário Camboriú</td>
+        </tr>
+        <tr class="green-row">
+          <td>Lucro bruto estimado</td>
+          <td>R$ 400.000,00</td>
+          <td>Mercado − Custo total</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="roi-block">
+      <div class="roi-badge">+57,1%</div>
+      <div class="roi-details">
+        <h4>ROI sobre custo total</h4>
+        <p>
+          <strong>Custo total:</strong> R$ 700.000 (100% quitado) ·
+          <strong>Mercado:</strong> R$ 1.100.000 ·
+          <strong>Lucro bruto:</strong> R$ 400.000<br>
+          Fórmula: (Mercado − Custo Total) ÷ Custo Total × 100<br>
+          <em>Nota: O reajuste INCC sobre as parcelas pode alterar levemente o custo total. Valores de mercado baseados em pesquisa Mar/2026 em Balneário Camboriú — Bairro Nações.</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<section class="section">
+  <p class="section-title">Localização</p>
+  <h2 class="section-heading">Bairro <strong>Nações</strong> — Balneário Camboriú / SC</h2>
+  <div class="divider"></div>
+  <div class="location-grid">
+    <div class="location-info">
+      <p><strong>Endereço:</strong> Rua Paraguai — Bairro Nações, Balneário Camboriú / SC</p>
+      <p>O bairro Nações é uma das regiões mais valorizadas de Balneário Camboriú, com excelente infraestrutura urbana, próximo ao centro, ao mar e às principais avenidas da cidade. Balneário Camboriú é reconhecida como a cidade com os apartamentos mais caros do Brasil por m², com valorização consistente ao longo dos anos.</p>
+      <p><strong>Incorporadora:</strong> Haacke Empreendimentos Imobiliários Ltda.<br>
+      <strong>CNPJ:</strong> 06.081.065/0001-95<br>
+      <strong>Contato:</strong> carlos@haacke.com.br</p>
+    </div>
+    <div class="location-map">
+      <iframe src="https://maps.google.com/maps?q=Rua+Paraguai,+Nações,+Balneário+Camboriú,+SC&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- COPY TEXT -->
+<section class="section" style="padding-top:0;">
+  <p class="section-title">Texto para Anúncio</p>
+  <h2 class="section-heading">Copie e cole no <strong>ZAP / OLX / Viva Real</strong></h2>
+  <div class="divider"></div>
+  <div class="copy-box">
+    <h4>Texto pronto para plataformas imobiliárias</h4>
+    <pre>🏢 APARTAMENTO À VENDA — ROC PARAGUAI | BALNEÁRIO CAMBORIÚ / SC
+
+Unidade 504 · Bairro Nações · 2 Suítes · Garagem Box 13 · 100% Quitado
+Entrega prevista: Dezembro/2027
+
+✅ IMÓVEL 100% QUITADO — Cessão de direitos sem saldo devedor a assumir
+📍 Rua Paraguai, Nações — Balneário Camboriú / SC
+🏗 Incorporadora: Haacke Empreendimentos Imobiliários
+
+INFRAESTRUTURA:
+• Piscina · Academia · Churrasqueira a carvão
+• Salão de festas · 2 pavimentos de garagem · Portaria 24h
+
+💰 Valor: R$ 1.100.000
+📞 Informações: [SEU CONTATO]</pre>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Interessado neste <strong>imóvel?</strong></h2>
+  <p>Entre em contato para mais informações sobre a cessão de direitos</p>
+  <div class="cta-buttons">
+    <a href="https://wa.me/SEUNUMERO" class="btn btn-navy">💬 WhatsApp</a>
+    <a href="mailto:seuemail@email.com" class="btn btn-white">✉️ E-mail</a>
+  </div>
+</section>
+
+<footer>
+  <p>Documento confidencial · Uso exclusivo para apresentação a agentes imobiliários e potenciais compradores · Mar/2026</p>
+</footer>
+
+</body>
+</html>

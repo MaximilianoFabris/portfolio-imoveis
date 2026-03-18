@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venda — Lote K25 | Wave Home Resort | Xangri-Lá</title>
+  <style>
+    :root {
+      --gold:    #c9a84c;
+      --gold-lt: #d4b86a;
+      --dark:    #1a2e4a;
+      --mid:     #2a4a6a;
+      --light:   #f9f8f5;
+      --white:   #ffffff;
+      --muted:   #6b7a8a;
+      --accent:  #f0ede6;
+      --green:   #2d7a4f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--light); color: #1a1a1a; line-height: 1.7; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh; min-height: 560px;
+      background: url('wave_hero.jpeg') center/cover no-repeat;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .hero::before { content:''; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(26,46,74,.25) 0%, rgba(26,46,74,.75) 100%); }
+    .hero-content { position:relative; z-index:1; padding: 60px 48px; max-width: 900px; }
+    .hero-badge { display:inline-block; background:var(--gold); color:#fff; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:6px 16px; border-radius:2px; margin-bottom:18px; }
+    .hero h1 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 8px; }
+    .hero h2 { font-size: clamp(1.1rem, 2.5vw, 1.6rem); color: rgba(255,255,255,.85); font-weight: 400; margin-bottom: 24px; }
+    .hero-price { display:inline-block; background:rgba(201,168,76,.85); backdrop-filter:blur(4px); color:#fff; padding:14px 28px; border-radius:4px; }
+    .hero-price span { display:block; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; opacity:.8; }
+    .hero-price strong { font-size: 2rem; font-weight: 800; }
+
+    /* ── STATS BAR ── */
+    .stats-bar { background: var(--dark); display:flex; flex-wrap:wrap; justify-content:center; }
+    .stat { flex:1; min-width:140px; padding:22px 16px; text-align:center; border-right:1px solid rgba(255,255,255,.08); }
+    .stat:last-child { border-right:none; }
+    .stat-icon { font-size:22px; margin-bottom:6px; }
+    .stat-val { font-size:1.25rem; font-weight:700; color:#fff; display:block; }
+    .stat-lbl { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.5); }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 0; }
+    section.alt { background: var(--white); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    .section-title { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:8px; }
+    .section-heading { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; color: var(--dark); margin-bottom: 12px; }
+    .divider { width:48px; height:3px; background:var(--gold); border-radius:2px; margin-bottom:32px; }
+
+    /* ── DESCRIPTION ── */
+    .desc-text { font-size:1.05rem; color:#2a4a55; max-width:780px; text-align:justify; margin-bottom:16px; }
+    .alert-box { background:#e8f4f7; border-left:4px solid var(--gold); padding:14px 20px; border-radius:4px; font-size:0.9rem; color:#1a4a58; margin-top:24px; }
+    .badge-status { display:inline-block; background:var(--green); color:#fff; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 12px; border-radius:2px; margin-bottom:16px; }
+
+    /* ── SPECS GRID ── */
+    .specs-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:16px; }
+    .spec-card { background:var(--light); border:1px solid #d0e8ef; border-radius:8px; padding:20px; }
+    .spec-card .spec-icon { font-size:28px; margin-bottom:10px; }
+    .spec-card .spec-label { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:4px; }
+    .spec-card .spec-val { font-size:1.05rem; font-weight:700; color:var(--dark); }
+    .spec-card .spec-sub { font-size:0.8rem; color:var(--muted); margin-top:2px; }
+
+    /* ── SITE PLAN ── */
+    .plan-wrap { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+    @media(max-width:700px){ .plan-wrap { grid-template-columns:1fr; } }
+    .plan-img-box { position:relative; border-radius:8px; overflow:hidden; border:1px solid #d0e8ef; }
+    .plan-img-box img { width:100%; display:block; }
+    .plan-caption { position:absolute; bottom:0; left:0; right:0; background:rgba(13,43,53,.75); color:#fff; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; padding:8px 14px; }
+    .plan-highlight { background:rgba(46,125,140,.12); border-left:3px solid var(--gold); padding:10px 16px; border-radius:0 4px 4px 0; margin-bottom:12px; }
+    .plan-highlight strong { color:var(--dark); }
+    .plan-highlight span { color:var(--muted); font-size:0.9rem; float:right; }
+    .plan-note { background:#fff8e1; border-left:3px solid #f0a500; padding:12px 16px; border-radius:0 4px 4px 0; font-size:0.9rem; color:#5a4000; margin-top:16px; }
+
+    /* ── AMENITIES ── */
+    .amenities-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:12px; }
+    .amenity { background:var(--light); border:1px solid #d0e8ef; border-radius:8px; padding:16px 12px; text-align:center; }
+    .amenity .am-icon { font-size:26px; margin-bottom:6px; }
+    .amenity .am-name { font-size:0.8rem; font-weight:600; color:var(--dark); }
+
+    /* ── GALLERY ── */
+    .gallery { display:grid; grid-template-columns:2fr 1fr; grid-template-rows:auto auto; gap:8px; border-radius:8px; overflow:hidden; }
+    .gallery img { width:100%; height:100%; object-fit:cover; display:block; }
+    .gallery img:first-child { grid-row:1/3; height:400px; }
+    .gallery img:not(:first-child) { height:196px; }
+    @media(max-width:600px){ .gallery { grid-template-columns:1fr; } .gallery img:first-child { grid-row:auto; height:240px; } }
+
+    /* ── FINANCE TABLE ── */
+    .finance-table { width:100%; border-collapse:collapse; font-size:0.95rem; }
+    .finance-table th { background:var(--dark); color:#fff; padding:12px 16px; text-align:left; font-size:11px; letter-spacing:1px; text-transform:uppercase; }
+    .finance-table td { padding:12px 16px; border-bottom:1px solid #d0e8ef; }
+    .finance-table tr:last-child td { border-bottom:none; }
+    .finance-table tr.highlight { background:var(--dark); }
+    .finance-table tr.highlight td { color:#fff; font-weight:700; }
+    .finance-table tr.subtotal { background:#e8f4f7; }
+    .badge-gain { background:#27ae60; color:#fff; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-left:8px; }
+    .badge-paid { background:#27ae60; color:#fff; font-size:10px; font-weight:700; padding:2px 8px; border-radius:10px; margin-left:8px; }
+
+    /* ── LOCATION ── */
+    .location-box { background:var(--white); border:1px solid #d0e8ef; border-radius:8px; padding:28px; }
+    .location-address { font-size:1.1rem; font-weight:600; color:var(--dark); margin-bottom:4px; }
+    .location-sub { color:var(--muted); font-size:0.9rem; margin-bottom:16px; }
+    .location-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+    .location-tag { background:var(--accent); color:var(--mid); font-size:0.8rem; padding:5px 12px; border-radius:20px; font-weight:500; }
+    .map-link { display:inline-block; color:var(--gold); font-size:0.9rem; font-weight:600; text-decoration:none; margin-top:8px; }
+    .map-link:hover { text-decoration:underline; }
+
+    /* ── AD TEXT BOX ── */
+    .ad-text-box { background:var(--dark); color:#fff; border-radius:8px; padding:32px; }
+    .ad-text-box h3 { font-size:1rem; font-weight:700; color:var(--gold-lt); margin-bottom:16px; letter-spacing:1px; text-transform:uppercase; }
+    .ad-text-box pre { white-space:pre-wrap; font-family:inherit; font-size:0.9rem; line-height:1.8; color:rgba(255,255,255,.9); }
+
+    /* ── CTA ── */
+    .cta-section { background:var(--dark); padding:80px 0; text-align:center; }
+    .back-link { display:inline-flex; align-items:center; gap:8px; color:var(--gold); font-size:0.85rem; font-weight:600; text-decoration:none; padding:10px 20px; border:1px solid var(--gold); border-radius:4px; transition:all .2s; }
+    .back-link:hover { background:var(--gold); color:#fff; }
+    .cta-section h2 { font-size:clamp(1.6rem,3vw,2.4rem); color:#fff; font-weight:800; margin-bottom:8px; }
+    .cta-section p { color:rgba(255,255,255,.7); margin-bottom:32px; font-size:1rem; }
+    .cta-price { font-size:2.8rem; font-weight:900; color:var(--gold-lt); margin-bottom:8px; display:block; }
+    .cta-sub { font-size:0.9rem; color:rgba(255,255,255,.5); margin-bottom:32px; display:block; }
+    .cta-buttons { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:14px 32px; border-radius:4px; font-weight:700; font-size:1rem; text-decoration:none; transition:opacity .2s; }
+    .btn-primary { background:var(--gold); color:#fff; }
+    .btn-secondary { background:transparent; border:2px solid rgba(255,255,255,.4); color:#fff; }
+    .btn:hover { opacity:.85; }
+
+    /* ── FOOTER ── */
+    footer { background:#0a1f27; padding:24px 32px; text-align:center; color:rgba(255,255,255,.35); font-size:0.8rem; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────────────────── -->
+<nav style="background:#1a2e4a; padding:14px 32px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; box-shadow:0 2px 12px rgba(0,0,0,.25);">
+  <a href="../index.html" style="color:#c9a84c; font-weight:800; font-size:1rem; text-decoration:none; letter-spacing:1px;">← Portfólio</a>
+  <span style="color:rgba(255,255,255,.5); font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">Wave Home Resort · Lote K25</span>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Lote Residencial · Condomínio Fechado · Xangri-Lá / RS</div>
+    <h1>Wave Home Resort</h1>
+    <h2>Quadra K · Lote 25 · 244,25 m² privativos · Entregue AGO/2025</h2>
+    <div class="hero-price">
+      <span>Valor de mercado estimado</span>
+      <strong>R$ 490.000</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ── STATS BAR ─────────────────────────────────────────────────────────── -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-icon">🔑</div>
+    <span class="stat-val">244,25 m²</span>
+    <span class="stat-lbl">Área Privativa</span>
+  </div>
+  <div class="stat">
+    <div class="stat-icon">🏘</div>
+    <span class="stat-val">226,21 m²</span>
+    <span class="stat-lbl">Área Comum</span>
+  </div>
+  <div class="stat">
+    <div class="stat-icon">📐</div>
+    <span class="stat-val">470,46 m²</span>
+    <span class="stat-lbl">Área Total</span>
+  </div>
+  <div class="stat">
+    <div class="stat-icon">🌊</div>
+    <span class="stat-val">Quadra K · L25</span>
+    <span class="stat-lbl">Localização no Cond.</span>
+  </div>
+  <div class="stat">
+    <div class="stat-icon">✅</div>
+    <span class="stat-val">Entregue</span>
+    <span class="stat-lbl">Habite-se AGO/2025</span>
+  </div>
+  <div class="stat">
+    <div class="stat-icon">🏗</div>
+    <span class="stat-val">Náutica / Vanguard</span>
+    <span class="stat-lbl">Incorporadora</span>
+  </div>
+  <div class="stat">
+    <div class="stat-icon">🌴</div>
+    <span class="stat-val">256 Lotes</span>
+    <span class="stat-lbl">14 Quadras</span>
+  </div>
+</div>
+
+<!-- ── DESCRIPTION ───────────────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-title">Sobre o imóvel</p>
+    <h2 class="section-heading">Seu refúgio à beira do <strong>lago</strong></h2>
+    <div class="divider"></div>
+    <span class="badge-status">✅ Condomínio entregue — Habite-se AGO/2025</span>
+    <p class="desc-text">
+      Oportunidade de adquirir, por cessão de direitos, o <strong>Lote K25</strong> no exclusivo condomínio fechado
+      <strong>Wave Home Resort</strong>, localizado na Praia de Atlântida, em Xangri-Lá / RS. Com <strong>244,25 m² de área privativa</strong>
+      e área total de 470,46 m², o lote está posicionado na Quadra K, com frente para a Rua 04 do condomínio, em um dos
+      empreendimentos mais sofisticados do litoral gaúcho.
+    </p>
+    <p class="desc-text">
+      O Wave Home Resort foi desenvolvido pela <strong>Náutica Empreendimentos Imobiliários SPE Ltda</strong>, empresa do grupo
+      Vanguard / Plaenge, e conta com 256 lotes privativos distribuídos em 14 quadras, sendo mais de 80% dos lotes beira de lago.
+      A infraestrutura completa inclui clubhouse, piscinas, fitness, quadras esportivas, ciclovia e segurança 24h — tudo já entregue
+      e em pleno funcionamento desde agosto de 2025.
+    </p>
+    <p class="desc-text">
+      O lote está praticamente quitado, com apenas 3 parcelas simbólicas de R$ 100,00 restantes. Ideal para construção de residência
+      de alto padrão, casa de veraneio ou investimento para valorização no litoral gaúcho.
+    </p>
+    <div class="alert-box">
+      ⚠️ <strong>Cessão de direitos:</strong> a transferência do lote requer anuência da incorporadora Náutica / Vanguard.
+      Lote totalmente quitado — saldo devedor zerado em Mar/2026. O lote está registrado sob matrícula nº 8.847
+      no Registro de Imóveis de Xangri-Lá/RS.
+    </div>
+  </div>
+</section>
+
+<!-- ── SPECS ─────────────────────────────────────────────────────────────── -->
+<section class="alt">
+  <div class="container">
+    <p class="section-title">Especificações</p>
+    <h2 class="section-heading">Dados <strong>técnicos</strong></h2>
+    <div class="divider"></div>
+    <div class="specs-grid">
+      <div class="spec-card">
+        <div class="spec-icon">🏠</div>
+        <div class="spec-label">Tipo</div>
+        <div class="spec-val">Lote Residencial</div>
+        <div class="spec-sub">Condomínio horizontal fechado</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">📐</div>
+        <div class="spec-label">Áreas do Lote</div>
+        <div class="spec-val">244,25 m² privativa</div>
+        <div class="spec-sub">Comum: 226,21 m² · Total: 470,46 m²</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">🌊</div>
+        <div class="spec-label">Localização</div>
+        <div class="spec-val">Quadra K · Lote 25</div>
+        <div class="spec-sub">Frente para Rua 04 do cond.</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">📏</div>
+        <div class="spec-label">Testada (frente)</div>
+        <div class="spec-val">10,36 m</div>
+        <div class="spec-sub">Profundidade: 24,00 m</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">📋</div>
+        <div class="spec-label">Matrícula</div>
+        <div class="spec-val">nº 8.847</div>
+        <div class="spec-sub">R.I. Xangri-Lá / RS</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">✅</div>
+        <div class="spec-label">Status</div>
+        <div class="spec-val">Entregue</div>
+        <div class="spec-sub">Habite-se: AGO/2025</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">🏢</div>
+        <div class="spec-label">Incorporadora</div>
+        <div class="spec-val">Náutica / Vanguard</div>
+        <div class="spec-sub">Grupo Plaenge</div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-icon">🔢</div>
+        <div class="spec-label">Fração Ideal</div>
+        <div class="spec-val">0,003547%</div>
+        <div class="spec-sub">Do terreno total</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SITE PLAN ─────────────────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-title">Implantação do condomínio</p>
+    <h2 class="section-heading">Localização do <strong>Lote K25</strong></h2>
+    <div class="divider"></div>
+    <div class="plan-wrap">
+      <div class="plan-img-box">
+        <img src="planta.png" alt="Planta de implantação Wave Home Resort" />
+        <div class="plan-caption">Implantação — Wave Home Resort · Quadra K destacada</div>
+      </div>
+      <div>
+        <p style="font-size:1rem; color:#2a4a55; text-align:justify; margin-bottom:20px;">
+          O lote K25 está posicionado na <strong>Quadra K</strong>, uma das quadras centrais do condomínio, próxima ao clubhouse
+          e às áreas de lazer. Com frente de 10,36 m para a Rua 04 e profundidade de 24,00 m, o lote oferece excelente
+          aproveitamento para construção de residência unifamiliar de alto padrão.
+        </p>
+        <div class="plan-highlight">
+          <strong>Quadra K · Lote 25</strong>
+          <span>Frente: 10,36 m</span>
+        </div>
+        <div class="plan-highlight">
+          <strong>Área privativa</strong>
+          <span>244,25 m²</span>
+        </div>
+        <div class="plan-highlight">
+          <strong>Área comum</strong>
+          <span>226,21 m²</span>
+        </div>
+        <div class="plan-highlight">
+          <strong>Área total</strong>
+          <span>470,46 m²</span>
+        </div>
+        <div class="plan-highlight">
+          <strong>Confrontação lateral</strong>
+          <span>24,00 m × 2</span>
+        </div>
+        <div class="plan-highlight">
+          <strong>Confrontação fundos</strong>
+          <span>A.U.C. 04 (área comum)</span>
+        </div>
+        <div class="plan-note">
+          📍 O lote dista <strong>84,74 m</strong> da esquina formada pela Rua 04 e a Avenida 02, no quarteirão formado pela Rua 04,
+          Av. 02, A.U.C. 04 e Ponte de Pedestres/Bike.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AMENITIES ─────────────────────────────────────────────────────────── -->
+<section class="alt">
+  <div class="container">
+    <p class="section-title">Infraestrutura do condomínio</p>
+    <h2 class="section-heading">Lazer e serviços <strong>completos</strong></h2>
+    <div class="divider"></div>
+    <div class="amenities-grid">
+      <div class="amenity"><div class="am-icon">🏊</div><div class="am-name">Piscinas</div></div>
+      <div class="amenity"><div class="am-icon">🍹</div><div class="am-name">Bar Piscina</div></div>
+      <div class="amenity"><div class="am-icon">🏋️</div><div class="am-name">Fitness / Academia</div></div>
+      <div class="amenity"><div class="am-icon">🎉</div><div class="am-name">Salão de Festas</div></div>
+      <div class="amenity"><div class="am-icon">🎾</div><div class="am-name">Quadra de Tênis</div></div>
+      <div class="amenity"><div class="am-icon">🏐</div><div class="am-name">Quadra Poliesportiva</div></div>
+      <div class="amenity"><div class="am-icon">🏖</div><div class="am-name">Beach Tênis</div></div>
+      <div class="amenity"><div class="am-icon">🚴</div><div class="am-name">Ciclovia</div></div>
+      <div class="amenity"><div class="am-icon">🌅</div><div class="am-name">Mirante Deck</div></div>
+      <div class="amenity"><div class="am-icon">⛵</div><div class="am-name">Prainha</div></div>
+      <div class="amenity"><div class="am-icon">🧒</div><div class="am-name">Playground</div></div>
+      <div class="amenity"><div class="am-icon">🔒</div><div class="am-name">Segurança 24h</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GALLERY ───────────────────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-title">O empreendimento</p>
+    <h2 class="section-heading">Wave Home Resort — <strong>Xangri-Lá</strong></h2>
+    <div class="divider"></div>
+    <div class="gallery">
+      <img src="wave_aerial.jpeg" alt="Vista aérea Wave Home Resort" />
+      <img src="wave_clubhouse.jpeg" alt="Clubhouse Wave Home Resort" />
+      <img src="wave_lake.jpeg" alt="Lago e estrutura Wave Home Resort" />
+    </div>
+  </div>
+</section>
+
+<!-- ── FINANCE ───────────────────────────────────────────────────────────── -->
+<section class="alt">
+  <div class="container">
+    <p class="section-title">Dados financeiros</p>
+    <h2 class="section-heading">Resumo da <strong>negociação</strong></h2>
+    <div class="divider"></div>
+    <table class="finance-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Valor</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Preço de compra original (contrato)</td>
+          <td><strong>R$ 392.444,22</strong></td>
+          <td>Valor contratual com a Náutica / Vanguard</td>
+        </tr>
+        <tr>
+          <td>Corretagem paga (upfront)</td>
+          <td><strong>R$ 23.546,82</strong></td>
+          <td>Taxa de corretagem paga em Jan/2023</td>
+        </tr>
+        <tr>
+          <td>Total efetivamente pago (com correção IPCA)</td>
+          <td><strong>R$ 430.019,11</strong></td>
+          <td>Todas as parcelas quitadas até Out/2025</td>
+        </tr>
+        <tr class="subtotal">
+          <td><strong>Total investido pelo cedente</strong></td>
+          <td><strong>R$ 453.565,93</strong></td>
+          <td>Corretagem + parcelas pagas</td>
+        </tr>
+        <tr>
+          <td>Saldo devedor remanescente</td>
+          <td><strong>R$ 0,00</strong></td>
+          <td>✅ Totalmente quitado em Mar/2026</td>
+        </tr>
+        <tr style="background:#fff8e1;">
+          <td>Condôminio pago — Nov/2025</td>
+          <td><strong>R$ 564,88</strong></td>
+          <td>1ª cota de condomínio após entrega</td>
+        </tr>
+        <tr style="background:#fff8e1;">
+          <td>Condôminio pago — Dez/2025</td>
+          <td><strong>R$ 568,28</strong></td>
+          <td>2ª cota de condomínio</td>
+        </tr>
+        <tr style="background:#fff8e1;">
+          <td>Condôminio pago — Jan/2026</td>
+          <td><strong>R$ 708,75</strong></td>
+          <td>3ª cota de condomínio</td>
+        </tr>
+        <tr style="background:#fff8e1;">
+          <td>Condôminio pago — Fev/2026</td>
+          <td><strong>R$ 719,14</strong></td>
+          <td>4ª cota de condomínio</td>
+        </tr>
+        <tr style="background:#ffeeba;">
+          <td><strong>Total Condôminio Pago</strong></td>
+          <td><strong>R$ 2.561,05</strong></td>
+          <td>4 meses (Nov/2025 a Fev/2026)</td>
+        </tr>
+        <tr>
+          <td><strong>Custo total da operação</strong></td>
+          <td><strong>R$ 432.580,16</strong></td>
+          <td>Parcelas (R$ 430.019) + Condôminio (R$ 2.561)</td>
+        </tr>
+        <tr>
+          <td>Valor de mercado estimado (Mar/2026)</td>
+          <td><strong>R$ 490.000,00</strong></td>
+          <td>Base: 22 lotes ativos (Viva Real, ZAP, OLX) — 244m² beira lago: R$ 450k–R$ 520k</td>
+        </tr>
+        <tr style="background:#e8f5ee;">
+          <td><strong>Lucro bruto estimado</strong></td>
+          <td><strong style="color:#2d7a4f;">R$ 57.419,84</strong></td>
+          <td>Valor de mercado − custo total da operação</td>
+        </tr>
+        <tr class="highlight">
+          <td>💰 ROI sobre custo total</td>
+          <td>R$ 490.000 <span class="badge-gain">+13,3%</span></td>
+          <td>(Mercado − Custo Total) ÷ Custo Total × 100</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px; color:var(--muted); margin-top:12px;">
+      * Lote totalmente quitado (saldo zerado em Mar/2026). A corretagem de R$ 23.546,82 foi paga antecipadamente pelo cedente.
+      Valor de mercado estimado com base em pesquisa aprofundada: 22 lotes ativos no Viva Real, ZAP Imóveis, OLX e Condomínios da Praia (Mar/2026).
+      Faixa de mercado para 244m² beira lago: R$ 450.000 – R$ 520.000. Condições negociáveis. Consulte o vendedor para mais detalhes.
+    </p>
+  </div>
+</section>
+
+<!-- ── LOCATION ───────────────────────────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <p class="section-title">Localização</p>
+    <h2 class="section-heading">Praia de Atlântida — <strong>Xangri-Lá / RS</strong></h2>
+    <div class="divider"></div>
+    <div class="location-box">
+      <div class="location-address">📍 Av. José Bruno Klein, 879 — Xangri-Lá / RS</div>
+      <div class="location-sub">Praia de Atlântida · CEP 95.588-000</div>
+      <a class="map-link" href="https://maps.google.com/?q=Av.+José+Bruno+Klein,+879,+Xangri-Lá,+RS" target="_blank">Ver no Google Maps →</a>
+      <div class="location-tags">
+        <span class="location-tag">🌊 Litoral gaúcho</span>
+        <span class="location-tag">🏖 Praia de Atlântida</span>
+        <span class="location-tag">🚗 ~80 km de Porto Alegre</span>
+        <span class="location-tag">🛒 Comércio local</span>
+        <span class="location-tag">🏥 Serviços de saúde</span>
+        <span class="location-tag">🌴 Área de lazer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AD TEXT ────────────────────────────────────────────────────────────── -->
+<section class="alt">
+  <div class="container">
+    <p class="section-title">Texto pronto para anúncio</p>
+    <h2 class="section-heading">Copie e cole no <strong>ZAP / OLX / Viva Real</strong></h2>
+    <div class="divider"></div>
+    <div class="ad-text-box">
+      <h3>Texto do anúncio</h3>
+      <pre>🌊 VENDA — Lote Wave Home Resort | Quadra K, Lote 25 | Xangri-Lá / RS
+
+📍 Av. José Bruno Klein, 879 — Praia de Atlântida, Xangri-Lá / RS
+🌊 Lote K25 · Condomínio horizontal fechado · Entregue AGO/2025
+📐 244,25 m² (área privativa) | 470,46 m² (área total)
+✅ Condomínio entregue e em funcionamento pleno
+✅ Totalmente quitado — sem saldo devedor
+
+💰 VALOR: R$ 490.000
+(Cessão de direitos — imóvel 100% quitado)
+
+✅ SOBRE O EMPREENDIMENTO:
+Wave Home Resort é um condomínio horizontal fechado de alto padrão em Xangri-Lá/RS,
+desenvolvido pela Náutica Empreendimentos / Vanguard / Plaenge. São 256 lotes com
+240 a 417 m², sendo mais de 80% beira de lago. Infraestrutura completa com piscinas,
+fitness, clubhouse, quadras, ciclovia, mirante deck, prainha e segurança 24h.
+
+📋 DADOS TÉCNICOS:
+• Tipo: Lote residencial — condomínio horizontal fechado
+• Área privativa: 244,25 m²
+• Área total: 470,46 m²
+• Quadra: K · Lote: 25
+• Testada (frente): 10,36 m | Profundidade: 24,00 m
+• Matrícula: nº 8.847 — R.I. Xangri-Lá/RS
+• Incorporadora: Náutica Empreendimentos / Vanguard / Plaenge
+• Status: Entregue — Habite-se AGO/2025
+
+📞 Entre em contato para mais informações e visita ao lote.</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ────────────────────────────────────────────────────────────────── -->
+<div class="cta-section">
+  <div class="container">
+    <h2>Adquira agora com <strong>valorização garantida</strong></h2>
+    <p>Lote entregue · Condomínio em pleno funcionamento · Cessão de direitos</p>
+    <span class="cta-price">R$ 490.000</span>
+    <span class="cta-sub">Valor de mercado estimado · Mar/2026 · Imóvel 100% quitado · Condições negociáveis</span>
+    <div class="cta-buttons">
+      <a class="btn btn-primary" href="https://wa.me/SEUNUMERO?text=Olá!%20Tenho%20interesse%20no%20Lote%20K25%20do%20Wave%20Home%20Resort%20em%20Xangri-Lá." target="_blank">💬 WhatsApp</a>
+      <a class="btn btn-secondary" href="mailto:seuemail@email.com?subject=Interesse%20Lote%20K25%20Wave%20Home%20Resort">✉️ Enviar E-mail</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────────────────── -->
+<footer>
+  <p>Wave Home Resort · Quadra K · Lote 25 · Xangri-Lá / RS · Matrícula nº 8.847 — R.I. Xangri-Lá</p>
+  <p style="margin-top:6px;">Incorporadora: Náutica Empreendimentos Imobiliários SPE Ltda · CNPJ 42.488.615/0001-59</p>
+</footer>
+
+</body>
+</html>

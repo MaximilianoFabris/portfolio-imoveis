@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Histórico — Apt 506 | Roc Paraguai | Balneário Camboriú</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background: #f4f4f2; color: #1a1a1a; line-height: 1.65; }
+    :root { --navy: #1a2e4a; --gold: #c9a84c; --light: #f9f8f5; --mid: #e8e4dc; --text: #2c2c2c; --muted: #6b6b6b; --white: #ffffff; --green: #2d7a4f; --red: #c0392b; --orange: #d35400; }
+
+    /* NAV */
+    .top-nav { background: var(--navy); padding: 12px 32px; display: flex; align-items: center; gap: 16px; position: sticky; top: 0; z-index: 100; }
+    .top-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; letter-spacing: 0.5px; }
+    .top-nav a:hover { color: var(--gold); }
+    .top-nav .sep { color: rgba(255,255,255,0.3); }
+    .top-nav .current { color: var(--gold); font-weight: 600; }
+
+    /* HERO */
+    .hero { position: relative; height: 520px; overflow: hidden; }
+    .hero img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; display: block; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(26,46,74,0.55) 0%, rgba(26,46,74,0.82) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; }
+    .hero-tag { display: inline-block; background: var(--orange); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; padding: 5px 16px; border-radius: 2px; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(26px, 5vw, 46px); font-weight: 300; color: var(--white); letter-spacing: 1px; line-height: 1.2; margin-bottom: 8px; }
+    .hero h1 strong { font-weight: 700; }
+    .hero-sub { font-size: 15px; color: rgba(255,255,255,0.78); letter-spacing: 0.5px; margin-bottom: 28px; }
+    .hero-distrato { background: rgba(201,168,76,0.2); border: 2px solid var(--gold); color: var(--white); font-size: 15px; font-weight: 600; padding: 12px 36px; border-radius: 4px; letter-spacing: 0.5px; }
+    .hero-distrato span { font-size: 12px; font-weight: 400; display: block; opacity: 0.85; margin-top: 4px; }
+
+    /* STATS BAR */
+    .stats-bar { background: var(--navy); display: flex; flex-wrap: wrap; justify-content: center; gap: 0; }
+    .stat { padding: 18px 28px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .stat:last-child { border-right: none; }
+    .stat-val { font-size: 20px; font-weight: 700; color: var(--gold); display: block; }
+    .stat-lbl { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; }
+
+    /* SECTIONS */
+    .section { max-width: 1100px; margin: 0 auto; padding: 56px 24px; }
+    .section-title { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-heading { font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: var(--navy); margin-bottom: 24px; line-height: 1.3; }
+    .section-heading strong { font-weight: 700; }
+    .divider { width: 48px; height: 3px; background: var(--gold); margin-bottom: 32px; }
+    .body-text { font-size: 15px; color: var(--text); line-height: 1.8; max-width: 720px; text-align: justify; }
+
+    /* DISTRATO BANNER */
+    .distrato-banner { background: linear-gradient(135deg, #1a2e4a 0%, #2c4a6e 100%); border-left: 6px solid var(--gold); border-radius: 0 8px 8px 0; padding: 28px 32px; margin-bottom: 40px; }
+    .distrato-banner h3 { color: var(--gold); font-size: 14px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .distrato-banner p { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.8; }
+    .distrato-banner strong { color: var(--white); }
+    .distrato-arrow { display: flex; align-items: center; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+    .distrato-from { background: rgba(192,57,43,0.2); border: 1px solid rgba(192,57,43,0.5); border-radius: 6px; padding: 12px 20px; color: var(--white); font-size: 13px; }
+    .distrato-from .label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .distrato-from .value { font-weight: 700; font-size: 15px; }
+    .arrow-icon { font-size: 28px; color: var(--gold); }
+    .distrato-to { background: rgba(45,122,79,0.2); border: 1px solid rgba(93,186,126,0.5); border-radius: 6px; padding: 12px 20px; color: var(--white); font-size: 13px; }
+    .distrato-to .label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+    .distrato-to .value { font-weight: 700; font-size: 15px; color: #5dba7e; }
+
+    /* SPECS GRID */
+    .specs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
+    .spec-card { background: var(--white); border: 1px solid var(--mid); border-radius: 6px; padding: 20px; }
+    .spec-icon { font-size: 22px; margin-bottom: 8px; }
+    .spec-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .spec-value { font-size: 16px; font-weight: 600; color: var(--navy); }
+    .spec-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* TIMELINE */
+    .timeline { position: relative; margin-top: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 20px; top: 0; bottom: 0; width: 2px; background: var(--mid); }
+    .tl-item { display: flex; gap: 24px; margin-bottom: 28px; position: relative; }
+    .tl-dot { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; position: relative; z-index: 1; }
+    .tl-dot.paid { background: #e8f5ee; border: 2px solid var(--green); }
+    .tl-dot.distrato { background: #fef3e2; border: 2px solid var(--gold); }
+    .tl-dot.transfer { background: #e8f5ee; border: 2px solid #5dba7e; }
+    .tl-content { background: var(--white); border: 1px solid var(--mid); border-radius: 6px; padding: 16px 20px; flex: 1; }
+    .tl-date { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .tl-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .tl-desc { font-size: 13px; color: var(--text); line-height: 1.6; }
+    .tl-amount { font-size: 16px; font-weight: 700; color: var(--green); margin-top: 8px; }
+    .tl-amount.negative { color: var(--red); }
+    .tl-amount.transfer-amt { color: #5dba7e; }
+    .tl-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-top: 6px; }
+    .tl-tag.boleto { background: #fef3e2; color: var(--orange); }
+    .tl-tag.pix { background: #e8f5ee; color: var(--green); }
+    .tl-tag.distrato-tag { background: #fef3e2; color: var(--gold); }
+    .tl-tag.credit { background: #e8f5ee; color: #2d7a4f; }
+
+    /* GALLERY */
+    .gallery-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; border-radius: 8px; overflow: hidden; }
+    .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-right { display: grid; grid-template-rows: 1fr 1fr; gap: 8px; }
+    .gallery-right img { height: 200px; }
+    .gallery-grid .main-img { height: 408px; }
+
+    /* FINANCIAL TABLE */
+    .fin-section { background: var(--navy); }
+    .fin-inner { max-width: 1100px; margin: 0 auto; padding: 56px 24px; }
+    .fin-title { font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .fin-heading { font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: var(--white); margin-bottom: 8px; }
+    .fin-heading strong { font-weight: 700; }
+    .fin-divider { width: 48px; height: 3px; background: var(--gold); margin-bottom: 32px; }
+    .fin-table { width: 100%; border-collapse: collapse; }
+    .fin-table th { background: rgba(255,255,255,0.08); color: var(--gold); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 12px 16px; text-align: left; }
+    .fin-table td { padding: 14px 16px; font-size: 14px; color: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .fin-table tr:last-child td { border-bottom: none; }
+    .fin-table .highlight { background: rgba(201,168,76,0.15); }
+    .fin-table .highlight td { color: var(--white); font-weight: 700; font-size: 15px; }
+    .fin-table .green-row td { color: #5dba7e; font-weight: 700; }
+    .fin-table .distrato-row td { color: var(--gold); font-weight: 700; background: rgba(201,168,76,0.1); }
+
+    /* RESULT BLOCK */
+    .result-block { background: rgba(45,122,79,0.2); border: 1px solid rgba(93,186,126,0.4); border-radius: 8px; padding: 24px 28px; margin-top: 28px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .result-badge { background: var(--green); color: var(--white); font-size: 15px; font-weight: 800; padding: 12px 20px; border-radius: 6px; letter-spacing: 0.5px; white-space: nowrap; text-align: center; }
+    .result-badge .badge-title { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.8; margin-bottom: 4px; }
+    .result-details { flex: 1; min-width: 200px; }
+    .result-details h4 { color: #5dba7e; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+    .result-details p { color: rgba(255,255,255,0.75); font-size: 13px; line-height: 1.7; }
+    .result-details strong { color: var(--white); }
+
+    /* LOCATION */
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; margin-top: 28px; }
+    .location-info p { font-size: 15px; color: var(--text); line-height: 1.8; margin-bottom: 12px; }
+    .location-map { background: var(--mid); border-radius: 8px; overflow: hidden; height: 280px; }
+    .location-map iframe { width: 100%; height: 100%; border: none; }
+
+    /* FOOTER */
+    footer { background: #111; color: rgba(255,255,255,0.4); text-align: center; padding: 24px; font-size: 12px; }
+
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-grid .main-img { height: 260px; }
+      .gallery-right { grid-template-rows: auto; }
+      .gallery-right img { height: 160px; }
+      .location-grid { grid-template-columns: 1fr; }
+      .stat { padding: 14px 16px; }
+      .distrato-arrow { flex-direction: column; }
+      .timeline::before { left: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="top-nav">
+  <a href="../index.html">← Portfólio</a>
+  <span class="sep">/</span>
+  <span class="current">Roc Paraguai — Apt 506 (Distratado)</span>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="roc_hero.jpg" alt="Roc Paraguai — Balneário Camboriú" />
+  <div class="hero-overlay">
+    <span class="hero-tag">🔄 Distratado — Crédito Transferido ao Horizon 1503</span>
+    <h1><strong>Roc Paraguai</strong><br>Apartamento 506</h1>
+    <p class="hero-sub">Rua Paraguai · Bairro Nações · Balneário Camboriú / SC</p>
+    <div class="hero-distrato">
+      Crédito integral de R$ 432.906,23 transferido
+      <span>Distrato em 30/07/2024 · Sem penalidade · Zero retenção</span>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><span class="stat-val">Mar/2023</span><span class="stat-lbl">Data do Contrato</span></div>
+  <div class="stat"><span class="stat-val">Jul/2024</span><span class="stat-lbl">Data do Distrato</span></div>
+  <div class="stat"><span class="stat-val">16 meses</span><span class="stat-lbl">Período da Operação</span></div>
+  <div class="stat"><span class="stat-val">R$ 432.906</span><span class="stat-lbl">Total Pago</span></div>
+  <div class="stat"><span class="stat-val">R$ 0,00</span><span class="stat-lbl">Penalidade</span></div>
+  <div class="stat"><span class="stat-val">Horizon 1503</span><span class="stat-lbl">Destino do Crédito</span></div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="section">
+  <p class="section-title">Histórico da Operação</p>
+  <h2 class="section-heading">Distrato <strong>sem penalidade</strong> com crédito<br>integral ao Horizon Residence</h2>
+  <div class="divider"></div>
+
+  <!-- DISTRATO BANNER -->
+  <div class="distrato-banner">
+    <h3>📄 Distrato — 30/07/2024</h3>
+    <p>
+      O apartamento 506 do Roc Paraguai foi adquirido em <strong>março de 2023</strong> e distratado em <strong>julho de 2024</strong>, após 16 meses de operação.
+      O distrato foi negociado com condições excepcionais: <strong>zero penalidade, zero retenção</strong> e crédito integral de
+      <strong>R$ 432.906,23</strong> transferido diretamente como entrada no <strong>Horizon Residence — Apartamento 1503</strong>.
+      Esta operação permitiu a migração estratégica para um imóvel de maior valor e potencial de valorização.
+    </p>
+    <div class="distrato-arrow">
+      <div class="distrato-from">
+        <div class="label">Origem</div>
+        <div class="value">Roc Paraguai 506</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;">R$ 432.906,23 pagos</div>
+      </div>
+      <div class="arrow-icon">→</div>
+      <div class="distrato-to">
+        <div class="label">Destino</div>
+        <div class="value">Horizon Residence 1503</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;">Crédito integral transferido</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="body-text">
+    O <strong>Roc Paraguai</strong> é um empreendimento residencial de alto padrão localizado na Rua Paraguai, no bairro Nações em Balneário Camboriú / SC, desenvolvido pela <strong>Haacke Empreendimentos Imobiliários Ltda</strong>. A unidade 506 foi adquirida com vaga de garagem simples (Box 28), com previsão de entrega em dezembro de 2027.
+  </p>
+</section>
+
+<!-- UNIT DETAILS -->
+<section class="section" style="padding-top:0;">
+  <p class="section-title">Dados da Unidade</p>
+  <h2 class="section-heading">Especificações do <strong>Apartamento 506</strong></h2>
+  <div class="divider"></div>
+  <div class="specs-grid">
+    <div class="spec-card">
+      <div class="spec-icon">🏢</div>
+      <div class="spec-label">Empreendimento</div>
+      <div class="spec-value">Roc Paraguai</div>
+      <div class="spec-sub">Haacke Empreendimentos</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🔑</div>
+      <div class="spec-label">Unidade</div>
+      <div class="spec-value">Apartamento 506</div>
+      <div class="spec-sub">Vaga Simples Box 28</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📍</div>
+      <div class="spec-label">Endereço</div>
+      <div class="spec-value">Rua Paraguai</div>
+      <div class="spec-sub">Bairro Nações · Balneário Camboriú / SC</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">📅</div>
+      <div class="spec-label">Contrato</div>
+      <div class="spec-value">03/03/2023</div>
+      <div class="spec-sub">Reserva de Unidade</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🔄</div>
+      <div class="spec-label">Distrato</div>
+      <div class="spec-value">30/07/2024</div>
+      <div class="spec-sub">Sem penalidade · Zero retenção</div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-icon">🏗</div>
+      <div class="spec-label">Entrega Prevista</div>
+      <div class="spec-value">Dezembro 2027</div>
+      <div class="spec-sub">Conforme contrato original</div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<div style="background:var(--light);">
+<section class="section">
+  <p class="section-title">Linha do Tempo</p>
+  <h2 class="section-heading">Histórico completo de <strong>pagamentos e distrato</strong></h2>
+  <div class="divider"></div>
+
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot paid">📋</div>
+      <div class="tl-content">
+        <div class="tl-date">Março / 2023</div>
+        <div class="tl-title">Assinatura do Contrato — Ato</div>
+        <div class="tl-desc">Assinatura da reserva da unidade 506 + Vaga Simples 28. Pagamento do ato de assinatura conforme estrutura contratual.</div>
+        <div class="tl-amount">R$ 150.000,00</div>
+        <span class="tl-tag boleto">Ato de Assinatura</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot paid">💳</div>
+      <div class="tl-content">
+        <div class="tl-date">13 de Junho / 2023</div>
+        <div class="tl-title">Pagamento Parcela 1 — Boleto + PIX</div>
+        <div class="tl-desc">Pagamento da 1ª parcela trimestral em duas transações: boleto bancário de R$ 27.577,35 e complemento via PIX de R$ 30.000,00 para Haacke Empreendimentos Imobiliários Ltda.</div>
+        <div class="tl-amount">R$ 57.577,35</div>
+        <span class="tl-tag boleto">Boleto R$ 27.577,35</span>
+        <span class="tl-tag pix">PIX R$ 30.000,00</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot paid">💳</div>
+      <div class="tl-content">
+        <div class="tl-date">Set/2023 · Dez/2023 · Mar/2024 · Jun/2024</div>
+        <div class="tl-title">Parcelas 2 a 5 — Pagamentos Trimestrais</div>
+        <div class="tl-desc">Pagamentos das parcelas trimestrais subsequentes conforme cronograma contratual. Valores confirmados pelo distrato oficial de 30/07/2024.</div>
+        <div class="tl-amount">R$ 200.000,00</div>
+        <span class="tl-tag boleto">4 × R$ 50.000,00</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot paid">💳</div>
+      <div class="tl-content">
+        <div class="tl-date">Julho / 2024</div>
+        <div class="tl-title">Pagamento Parcial — Pré-distrato</div>
+        <div class="tl-desc">Pagamento residual antes da formalização do distrato, completando o total de R$ 432.906,23 conforme apurado no instrumento de distrato.</div>
+        <div class="tl-amount">R$ 25.328,88</div>
+        <span class="tl-tag boleto">Complemento</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot distrato">📄</div>
+      <div class="tl-content">
+        <div class="tl-date">30 de Julho / 2024</div>
+        <div class="tl-title">Distrato Formalizado — Sem Penalidade</div>
+        <div class="tl-desc">Assinatura do instrumento de distrato com a Haacke Empreendimentos. Condições negociadas: <strong>zero penalidade, zero retenção</strong>. Crédito integral de R$ 432.906,23 reconhecido e destinado ao Horizon Residence.</div>
+        <div class="tl-amount" style="color:var(--gold);">Crédito: R$ 432.906,23</div>
+        <span class="tl-tag distrato-tag">Distrato Oficial</span>
+        <span class="tl-tag distrato-tag">Penalidade: R$ 0,00</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot transfer">🏢</div>
+      <div class="tl-content">
+        <div class="tl-date">Agosto / 2024</div>
+        <div class="tl-title">Crédito Transferido → Horizon Residence 1503</div>
+        <div class="tl-desc">O crédito integral de R$ 432.906,23 foi aplicado como entrada no <strong>Horizon Residence — Apartamento 1503</strong>, em Barra Velha / SC, viabilizando a aquisição de um imóvel de maior valor e potencial de valorização.</div>
+        <div class="tl-amount transfer-amt">→ Horizon 1503: R$ 432.906,23</div>
+        <span class="tl-tag credit">Crédito Aplicado</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- GALLERY -->
+<section class="section">
+  <p class="section-title">Galeria</p>
+  <h2 class="section-heading">Roc Paraguai — <strong>Balneário Camboriú</strong></h2>
+  <div class="divider"></div>
+  <div class="gallery-grid">
+    <img class="main-img" src="roc_hero.jpg" alt="Roc Paraguai fachada" />
+    <div class="gallery-right">
+      <img src="roc_exterior.jpg" alt="Roc Paraguai exterior" />
+      <img src="roc_lobby.jpg" alt="Roc Paraguai lobby" />
+    </div>
+  </div>
+</section>
+
+<!-- FINANCIAL TABLE -->
+<div class="fin-section">
+  <div class="fin-inner">
+    <p class="fin-title">Resumo Financeiro</p>
+    <h2 class="fin-heading">Operação <strong>Roc Paraguai 506</strong></h2>
+    <div class="fin-divider"></div>
+
+    <table class="fin-table">
+      <thead>
+        <tr>
+          <th>Evento</th>
+          <th>Data</th>
+          <th>Valor</th>
+          <th>Observação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Valor total contratado</td>
+          <td>Mar/2023</td>
+          <td>R$ 700.000,00</td>
+          <td>Ato R$ 150k + 11 parcelas de R$ 50k</td>
+        </tr>
+        <tr>
+          <td>Ato de assinatura</td>
+          <td>Mar/2023</td>
+          <td>R$ 150.000,00</td>
+          <td>Pagamento inicial</td>
+        </tr>
+        <tr>
+          <td>Parcela 1 (Boleto + PIX)</td>
+          <td>13/Jun/2023</td>
+          <td>R$ 57.577,35</td>
+          <td>Comprovantes confirmados</td>
+        </tr>
+        <tr>
+          <td>Parcelas 2 a 5 (trimestrais)</td>
+          <td>Set/23 a Jun/24</td>
+          <td>R$ 200.000,00</td>
+          <td>4 × R$ 50.000,00</td>
+        </tr>
+        <tr>
+          <td>Complemento pré-distrato</td>
+          <td>Jul/2024</td>
+          <td>R$ 25.328,88</td>
+          <td>Saldo para fechar R$ 432.906,23</td>
+        </tr>
+        <tr class="highlight">
+          <td>Total pago (oficial — distrato)</td>
+          <td>30/Jul/2024</td>
+          <td>R$ 432.906,23</td>
+          <td>Valor confirmado no instrumento de distrato</td>
+        </tr>
+        <tr>
+          <td>Penalidade / Retenção</td>
+          <td>30/Jul/2024</td>
+          <td>R$ 0,00</td>
+          <td>Zero — negociado sem penalidade</td>
+        </tr>
+        <tr class="distrato-row">
+          <td>Crédito transferido ao Horizon 1503</td>
+          <td>Ago/2024</td>
+          <td>R$ 432.906,23</td>
+          <td>Entrada no Horizon Residence</td>
+        </tr>
+        <tr>
+          <td>Parcelas não pagas (7 a 11)</td>
+          <td>—</td>
+          <td>R$ 267.093,77</td>
+          <td>Distratadas antes do vencimento</td>
+        </tr>
+        <tr class="green-row">
+          <td>Economia com distrato antecipado</td>
+          <td>—</td>
+          <td>R$ 267.093,77</td>
+          <td>Parcelas não desembolsadas</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="result-block">
+      <div class="result-badge">
+        <div class="badge-title">Resultado</div>
+        ✅ Crédito Integral
+      </div>
+      <div class="result-details">
+        <h4>Operação concluída com sucesso</h4>
+        <p>
+          Total investido no Roc Paraguai 506: <strong>R$ 432.906,23</strong><br>
+          Penalidade aplicada: <strong>R$ 0,00</strong><br>
+          Crédito transferido ao Horizon 1503: <strong>R$ 432.906,23</strong><br>
+          Período da operação: <strong>Mar/2023 → Jul/2024 (16 meses)</strong><br>
+          Este crédito representa <strong>23,2% do valor total do Horizon</strong> (R$ 1.862.906,23).
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOCATION -->
+<section class="section">
+  <p class="section-title">Localização</p>
+  <h2 class="section-heading">Rua Paraguai · Bairro Nações · <strong>Balneário Camboriú</strong></h2>
+  <div class="divider"></div>
+  <div class="location-grid">
+    <div class="location-info">
+      <p><strong>Endereço:</strong> Rua Paraguai — Bairro Nações, Balneário Camboriú / SC</p>
+      <p><strong>Incorporadora:</strong> Haacke Empreendimentos Imobiliários Ltda — CNPJ 06.081.065/0001-95</p>
+      <p><strong>Entrega prevista (original):</strong> Dezembro de 2027</p>
+      <p>O bairro Nações é uma das regiões mais valorizadas de Balneário Camboriú, com fácil acesso à orla, ao centro comercial e às principais avenidas da cidade.</p>
+    </div>
+    <div class="location-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3545.8!2d-48.6358!3d-26.9906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8d3b3b3b3b3b3%3A0x0!2sRua+Paraguai%2C+Balne%C3%A1rio+Cambori%C3%BA!5e0!3m2!1spt!2sbr!4v1" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Portfólio Privado de Investimentos Imobiliários · Documento confidencial · Não distribuir sem autorização</p>
+</footer>
+
+</body>
+</html>
